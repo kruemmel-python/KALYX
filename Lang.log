@@ -1,0 +1,902 @@
+sprachen:
+
+PS H:\kdna_opencl_with_inspector_krun> Remove-Item -Recurse -Force .\LangOut_smoke -ErrorAction SilentlyContinue
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> .\scripts\klang_2x2_experiment.ps1 `
+>>   -DeConllu .\de_gsd-ud-train.conllu `
+>>   -EnConllu .\en_ewt-ud-train.conllu `
+>>   -OutDir .\LangOut_smoke `
+>>   -Field upos `
+>>   -Window 2 `
+>>   -SymbolBits 32 `
+>>   -Train 0.70 `
+>>   -Backend cpu `
+>>   -NullSamples 0 `
+>>   -MaxAutoNullSamples 10000
+=== KLANG CoNLL-U -> KSTREAM: de field=upos window=2 ===
+kdna_stream_conllu: in=.\de_gsd-ud-train.conllu out=.\LangOut_smoke\de_upos_w2.u64 field=upos window=2 stride=1 boundary=reset symbol_bits=32 records=263777 symbols=249964 skipped=4610 invalid=0
+summary=.\LangOut_smoke\de_upos_w2.kstream
+file: KSTREAM kind:4 flags:0x00000017 symbol_bits:32 window:2 stride:1 bins:0
+source:de_gsd-ud-train.conllu input_bytes:19637803 records:263777 symbols:249964 skipped:4610 invalid:0 max_symbols:0 payload:1999712
+min:0 max:0 scale:0 offset:0 input_hash:0xe65c5cb8d2167e4e symbol_hash:0xf6d237628739e0de
+=== KSTREAM -> KDNA -> KGRAM: de ===
+KSTREAM -> KDNA: .\LangOut_smoke\de_upos_w2.u64 n=249964
+kdna_project: source=.\LangOut_smoke\de_upos_w2.u64 n=249964 mode=affine backend=cpu out_symbols=.\LangOut_smoke\de_upos_w2_kdna.u64 x:[-8,8] source:[0,4294967295] k=16
+KDNA -> KGRAM: .\LangOut_smoke\de_upos_w2_kdna.u64
+kdna_symbol_gram: source=.\LangOut_smoke\de_upos_w2_kdna.u64 out=.\LangOut_smoke\de_upos_w2_self.kgram n=249964 train_n=174974 transitions=174973 unique_edges=3039 payload_bytes=777984
+file: .\LangOut_smoke\de_upos_w2_self.kgram
+  size:778112 fnv1a64:0x35f9105ae168ca5c
+  magic: KGRAM01
+  type: KGRAM rc:ok rules:3039 source_words:3040 source_n:249964 payload:777984
+=== KLANG CoNLL-U -> KSTREAM: en field=upos window=2 ===
+kdna_stream_conllu: in=.\en_ewt-ud-train.conllu out=.\LangOut_smoke\en_upos_w2.u64 field=upos window=2 stride=1 boundary=reset symbol_bits=32 records=204578 symbols=192034 skipped=2651 invalid=0
+summary=.\LangOut_smoke\en_upos_w2.kstream
+file: KSTREAM kind:4 flags:0x00000017 symbol_bits:32 window:2 stride:1 bins:0
+source:en_ewt-ud-train.conllu input_bytes:15034493 records:204578 symbols:192034 skipped:2651 invalid:0 max_symbols:0 payload:1536272
+min:0 max:0 scale:0 offset:0 input_hash:0x56bf9b08c1155790 symbol_hash:0xec90cbf30c8fcd33
+=== KSTREAM -> KDNA -> KGRAM: en ===
+KSTREAM -> KDNA: .\LangOut_smoke\en_upos_w2.u64 n=192034
+kdna_project: source=.\LangOut_smoke\en_upos_w2.u64 n=192034 mode=affine backend=cpu out_symbols=.\LangOut_smoke\en_upos_w2_kdna.u64 x:[-8,8] source:[0,4294967295] k=16
+KDNA -> KGRAM: .\LangOut_smoke\en_upos_w2_kdna.u64
+kdna_symbol_gram: source=.\LangOut_smoke\en_upos_w2_kdna.u64 out=.\LangOut_smoke\en_upos_w2_self.kgram n=192034 train_n=134423 transitions=134422 unique_edges=4066 payload_bytes=1040896
+file: .\LangOut_smoke\en_upos_w2_self.kgram
+  size:1041024 fnv1a64:0xaa9a3f903017ec30
+  magic: KGRAM01
+  type: KGRAM rc:ok rules:4066 source_words:4067 source_n:192034 payload:1040896
+=== KLANG 2x2 KFIELD Matrix ===
+KFIELD matrix from manifest: entries=2 out=.\LangOut_smoke\klang_upos_w2.kfield csv=.\LangOut_smoke\klang_upos_w2.csv
+kdna_genome_matrix: wrote .\LangOut_smoke\klang_upos_w2.kfield and .\LangOut_smoke\klang_upos_w2.csv entries=2 cells=4 train=0.69999999999999996
+  de -> de acc:0.99661283654936061 lift:+0.90634626411873742 surprise:0.0033871634506394271 oog:254
+  de -> en acc:0.98087719532198059 lift:+0.8906106228913574 surprise:0.019122804678019443 oog:1434
+  en -> de acc:0.93813574032286062 lift:+0.88897760805415726 surprise:0.061864259677139384 oog:3564
+  en -> en acc:0.98953306717583756 lift:+0.9403749349071342 surprise:0.010466932824162473 oog:603
+=== KLANG Auto NullSamples ===
+  min_test_edges=57610
+  total_test_edges=132599
+  selected_null_samples_per_cell=10000
+=== KLANG true null models ===
+kdna_field_null_matrix: row=de n=249964
+kdna_field_null_matrix: row=en n=192034
+kdna_field_null_matrix: wrote .\LangOut_smoke\klang_upos_w2_null.csv entries=2 modes=all sample_per_cell=10000 train=0.69999999999999996
+=== KLANG Report ===
+KLANG report written:
+  .\LangOut_smoke\Report\KLANG_REPORT.md
+  .\LangOut_smoke\Report\KLANG_REPORT.html
+KLANG v1.1 experiment complete:
+  .\LangOut_smoke\klang_manifest.csv
+  .\LangOut_smoke\klang_upos_w2.csv
+  .\LangOut_smoke\klang_upos_w2_null.csv
+  .\LangOut_smoke\klang_run_manifest.json
+  .\LangOut_smoke\Report\KLANG_REPORT.html
+PS H:\kdna_opencl_with_inspector_krun> cd H:\kdna_opencl_with_inspector_krun
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> Remove-Item -Recurse -Force .\LangOut -ErrorAction SilentlyContinue
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> .\scripts\klang_full_v1_2.ps1 `
+>>   -DeConllu .\de_gsd-ud-train.conllu `
+>>   -EnConllu .\en_ewt-ud-train.conllu `
+>>   -OutDir .\LangOut `
+>>   -Field upos `
+>>   -Window 2 `
+>>   -SymbolBits 32 `
+>>   -Train 0.70 `
+>>   -Backend cpu `
+>>   -NullSamples 0 `
+>>   -MaxAutoNullSamples 200000
+=== KLANG CoNLL-U -> KSTREAM: de field=upos window=2 ===
+kdna_stream_conllu: in=.\de_gsd-ud-train.conllu out=.\LangOut\de_upos_w2.u64 field=upos window=2 stride=1 boundary=reset symbol_bits=32 records=263777 symbols=249964 skipped=4610 invalid=0
+summary=.\LangOut\de_upos_w2.kstream
+file: KSTREAM kind:4 flags:0x00000017 symbol_bits:32 window:2 stride:1 bins:0
+source:de_gsd-ud-train.conllu input_bytes:19637803 records:263777 symbols:249964 skipped:4610 invalid:0 max_symbols:0 payload:1999712
+min:0 max:0 scale:0 offset:0 input_hash:0xe65c5cb8d2167e4e symbol_hash:0xf6d237628739e0de
+=== KSTREAM -> KDNA -> KGRAM: de ===
+KSTREAM -> KDNA: .\LangOut\de_upos_w2.u64 n=249964
+kdna_project: source=.\LangOut\de_upos_w2.u64 n=249964 mode=affine backend=cpu out_symbols=.\LangOut\de_upos_w2_kdna.u64 x:[-8,8] source:[0,4294967295] k=16
+KDNA -> KGRAM: .\LangOut\de_upos_w2_kdna.u64
+kdna_symbol_gram: source=.\LangOut\de_upos_w2_kdna.u64 out=.\LangOut\de_upos_w2_self.kgram n=249964 train_n=174974 transitions=174973 unique_edges=3039 payload_bytes=777984
+file: .\LangOut\de_upos_w2_self.kgram
+  size:778112 fnv1a64:0x35f9105ae168ca5c
+  magic: KGRAM01
+  type: KGRAM rc:ok rules:3039 source_words:3040 source_n:249964 payload:777984
+=== KLANG CoNLL-U -> KSTREAM: en field=upos window=2 ===
+kdna_stream_conllu: in=.\en_ewt-ud-train.conllu out=.\LangOut\en_upos_w2.u64 field=upos window=2 stride=1 boundary=reset symbol_bits=32 records=204578 symbols=192034 skipped=2651 invalid=0
+summary=.\LangOut\en_upos_w2.kstream
+file: KSTREAM kind:4 flags:0x00000017 symbol_bits:32 window:2 stride:1 bins:0
+source:en_ewt-ud-train.conllu input_bytes:15034493 records:204578 symbols:192034 skipped:2651 invalid:0 max_symbols:0 payload:1536272
+min:0 max:0 scale:0 offset:0 input_hash:0x56bf9b08c1155790 symbol_hash:0xec90cbf30c8fcd33
+=== KSTREAM -> KDNA -> KGRAM: en ===
+KSTREAM -> KDNA: .\LangOut\en_upos_w2.u64 n=192034
+kdna_project: source=.\LangOut\en_upos_w2.u64 n=192034 mode=affine backend=cpu out_symbols=.\LangOut\en_upos_w2_kdna.u64 x:[-8,8] source:[0,4294967295] k=16
+KDNA -> KGRAM: .\LangOut\en_upos_w2_kdna.u64
+kdna_symbol_gram: source=.\LangOut\en_upos_w2_kdna.u64 out=.\LangOut\en_upos_w2_self.kgram n=192034 train_n=134423 transitions=134422 unique_edges=4066 payload_bytes=1040896
+file: .\LangOut\en_upos_w2_self.kgram
+  size:1041024 fnv1a64:0xaa9a3f903017ec30
+  magic: KGRAM01
+  type: KGRAM rc:ok rules:4066 source_words:4067 source_n:192034 payload:1040896
+=== KLANG 2x2 KFIELD Matrix ===
+KFIELD matrix from manifest: entries=2 out=.\LangOut\klang_upos_w2.kfield csv=.\LangOut\klang_upos_w2.csv
+kdna_genome_matrix: wrote .\LangOut\klang_upos_w2.kfield and .\LangOut\klang_upos_w2.csv entries=2 cells=4 train=0.69999999999999996
+  de -> de acc:0.99661283654936061 lift:+0.90634626411873742 surprise:0.0033871634506394271 oog:254
+  de -> en acc:0.98087719532198059 lift:+0.8906106228913574 surprise:0.019122804678019443 oog:1434
+  en -> de acc:0.93813574032286062 lift:+0.88897760805415726 surprise:0.061864259677139384 oog:3564
+  en -> en acc:0.98953306717583756 lift:+0.9403749349071342 surprise:0.010466932824162473 oog:603
+=== KLANG Auto NullSamples ===
+  min_test_edges=57610
+  total_test_edges=132599
+  selected_null_samples_per_cell=200000
+=== KLANG true null models ===
+kdna_field_null_matrix: row=de n=249964
+kdna_field_null_matrix: row=en n=192034
+kdna_field_null_matrix: wrote .\LangOut\klang_upos_w2_null.csv entries=2 modes=all sample_per_cell=200000 train=0.69999999999999996
+=== KLANG Report ===
+KLANG report written:
+  .\LangOut\Report\KLANG_REPORT.md
+  .\LangOut\Report\KLANG_REPORT.html
+KLANG v1.1 experiment complete:
+  .\LangOut\klang_manifest.csv
+  .\LangOut\klang_upos_w2.csv
+  .\LangOut\klang_upos_w2_null.csv
+  .\LangOut\klang_run_manifest.json
+  .\LangOut\Report\KLANG_REPORT.html
+KLANG v1.2 report written:
+
+  .\LangOut\ReportV12\KLANG_REPORT_V1_2.html
+  .\LangOut\ReportV12\tables\observed_vs_null.csv
+KLANG v1.2 full run complete:
+  .\LangOut\klang_upos_w2.csv
+
+  .\LangOut\ReportV12\KLANG_REPORT_V1_2.html
+PS H:\kdna_opencl_with_inspector_krun> Remove-Item -Recurse -Force .\LangSuiteOut -ErrorAction SilentlyContinue
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> .\scripts\klang_suite_v1_2.ps1 `
+>>   -DeConllu .\de_gsd-ud-train.conllu `
+>>   -EnConllu .\en_ewt-ud-train.conllu `
+>>   -OutRoot .\LangSuiteOut `
+>>   -Train 0.70 `
+>>   -Backend cpu `
+>>   -NullSamples 0 `
+>>   -MaxAutoNullSamples 200000
+=== KLANG SUITE: upos_w1 ===
+=== KLANG CoNLL-U -> KSTREAM: de field=upos window=1 ===
+kdna_stream_conllu: in=.\de_gsd-ud-train.conllu out=.\LangSuiteOut\upos_w1\de_upos_w1.u64 field=upos window=1 stride=1 boundary=reset symbol_bits=32 records=263777 symbols=263777 skipped=4610 invalid=0
+summary=.\LangSuiteOut\upos_w1\de_upos_w1.kstream
+file: KSTREAM kind:4 flags:0x00000017 symbol_bits:32 window:1 stride:1 bins:0
+source:de_gsd-ud-train.conllu input_bytes:19637803 records:263777 symbols:263777 skipped:4610 invalid:0 max_symbols:0 payload:2110216
+min:0 max:0 scale:0 offset:0 input_hash:0xe65c5cb8d2167e4e symbol_hash:0x7d51bef054e0ebe0
+=== KSTREAM -> KDNA -> KGRAM: de ===
+KSTREAM -> KDNA: .\LangSuiteOut\upos_w1\de_upos_w1.u64 n=263777
+kdna_project: source=.\LangSuiteOut\upos_w1\de_upos_w1.u64 n=263777 mode=affine backend=cpu out_symbols=.\LangSuiteOut\upos_w1\de_upos_w1_kdna.u64 x:[-8,8] source:[0,4294967295] k=16
+KDNA -> KGRAM: .\LangSuiteOut\upos_w1\de_upos_w1_kdna.u64
+kdna_symbol_gram: source=.\LangSuiteOut\upos_w1\de_upos_w1_kdna.u64 out=.\LangSuiteOut\upos_w1\de_upos_w1_self.kgram n=263777 train_n=184643 transitions=184642 unique_edges=180 payload_bytes=46080
+file: .\LangSuiteOut\upos_w1\de_upos_w1_self.kgram
+  size:46208 fnv1a64:0x5be0ff58a658df11
+  magic: KGRAM01
+  type: KGRAM rc:ok rules:180 source_words:181 source_n:263777 payload:46080
+=== KLANG CoNLL-U -> KSTREAM: en field=upos window=1 ===
+kdna_stream_conllu: in=.\en_ewt-ud-train.conllu out=.\LangSuiteOut\upos_w1\en_upos_w1.u64 field=upos window=1 stride=1 boundary=reset symbol_bits=32 records=204578 symbols=204578 skipped=2651 invalid=0
+summary=.\LangSuiteOut\upos_w1\en_upos_w1.kstream
+file: KSTREAM kind:4 flags:0x00000017 symbol_bits:32 window:1 stride:1 bins:0
+source:en_ewt-ud-train.conllu input_bytes:15034493 records:204578 symbols:204578 skipped:2651 invalid:0 max_symbols:0 payload:1636624
+min:0 max:0 scale:0 offset:0 input_hash:0x56bf9b08c1155790 symbol_hash:0x89134022ba9a1c9d
+=== KSTREAM -> KDNA -> KGRAM: en ===
+KSTREAM -> KDNA: .\LangSuiteOut\upos_w1\en_upos_w1.u64 n=204578
+kdna_project: source=.\LangSuiteOut\upos_w1\en_upos_w1.u64 n=204578 mode=affine backend=cpu out_symbols=.\LangSuiteOut\upos_w1\en_upos_w1_kdna.u64 x:[-8,8] source:[0,4294967295] k=16
+KDNA -> KGRAM: .\LangSuiteOut\upos_w1\en_upos_w1_kdna.u64
+kdna_symbol_gram: source=.\LangSuiteOut\upos_w1\en_upos_w1_kdna.u64 out=.\LangSuiteOut\upos_w1\en_upos_w1_self.kgram n=204578 train_n=143204 transitions=143203 unique_edges=214 payload_bytes=54784
+file: .\LangSuiteOut\upos_w1\en_upos_w1_self.kgram
+  size:54912 fnv1a64:0x28057116a3b73105
+  magic: KGRAM01
+  type: KGRAM rc:ok rules:214 source_words:215 source_n:204578 payload:54784
+=== KLANG 2x2 KFIELD Matrix ===
+KFIELD matrix from manifest: entries=2 out=.\LangSuiteOut\upos_w1\klang_upos_w1.kfield csv=.\LangSuiteOut\upos_w1\klang_upos_w1.csv
+kdna_genome_matrix: wrote .\LangSuiteOut\upos_w1\klang_upos_w1.kfield and .\LangSuiteOut\upos_w1\klang_upos_w1.csv entries=2 cells=4 train=0.69999999999999996
+  de -> de acc:0.99997472609404425 lift:+0.77092995336964354 surprise:2.5273905955795937e-05 oog:2
+  de -> en acc:0.99996208914106632 lift:+0.77091731641666561 surprise:3.7910858933693906e-05 oog:3
+  en -> de acc:0.99692046991347982 lift:+0.78519870301272543 surprise:0.0030795300865201309 oog:189
+  en -> en acc:0.99990223714011051 lift:+0.78818047023935611 surprise:9.7762859889527967e-05 oog:6
+=== KLANG Auto NullSamples ===
+  min_test_edges=61373
+  total_test_edges=140506
+  selected_null_samples_per_cell=200000
+=== KLANG true null models ===
+kdna_field_null_matrix: row=de n=263777
+kdna_field_null_matrix: row=en n=204578
+kdna_field_null_matrix: wrote .\LangSuiteOut\upos_w1\klang_upos_w1_null.csv entries=2 modes=all sample_per_cell=200000 train=0.69999999999999996
+=== KLANG Report ===
+KLANG report written:
+  .\LangSuiteOut\upos_w1\Report\KLANG_REPORT.md
+  .\LangSuiteOut\upos_w1\Report\KLANG_REPORT.html
+KLANG v1.1 experiment complete:
+  .\LangSuiteOut\upos_w1\klang_manifest.csv
+  .\LangSuiteOut\upos_w1\klang_upos_w1.csv
+  .\LangSuiteOut\upos_w1\klang_upos_w1_null.csv
+  .\LangSuiteOut\upos_w1\klang_run_manifest.json
+  .\LangSuiteOut\upos_w1\Report\KLANG_REPORT.html
+KLANG v1.2 report written:
+
+  .\LangSuiteOut\upos_w1\ReportV12\KLANG_REPORT_V1_2.html
+  .\LangSuiteOut\upos_w1\ReportV12\tables\observed_vs_null.csv
+KLANG v1.2 full run complete:
+  .\LangSuiteOut\upos_w1\klang_upos_w1.csv
+
+  .\LangSuiteOut\upos_w1\ReportV12\KLANG_REPORT_V1_2.html
+=== KLANG SUITE: upos_w2 ===
+=== KLANG CoNLL-U -> KSTREAM: de field=upos window=2 ===
+kdna_stream_conllu: in=.\de_gsd-ud-train.conllu out=.\LangSuiteOut\upos_w2\de_upos_w2.u64 field=upos window=2 stride=1 boundary=reset symbol_bits=32 records=263777 symbols=249964 skipped=4610 invalid=0
+summary=.\LangSuiteOut\upos_w2\de_upos_w2.kstream
+file: KSTREAM kind:4 flags:0x00000017 symbol_bits:32 window:2 stride:1 bins:0
+source:de_gsd-ud-train.conllu input_bytes:19637803 records:263777 symbols:249964 skipped:4610 invalid:0 max_symbols:0 payload:1999712
+min:0 max:0 scale:0 offset:0 input_hash:0xe65c5cb8d2167e4e symbol_hash:0xf6d237628739e0de
+=== KSTREAM -> KDNA -> KGRAM: de ===
+KSTREAM -> KDNA: .\LangSuiteOut\upos_w2\de_upos_w2.u64 n=249964
+kdna_project: source=.\LangSuiteOut\upos_w2\de_upos_w2.u64 n=249964 mode=affine backend=cpu out_symbols=.\LangSuiteOut\upos_w2\de_upos_w2_kdna.u64 x:[-8,8] source:[0,4294967295] k=16
+KDNA -> KGRAM: .\LangSuiteOut\upos_w2\de_upos_w2_kdna.u64
+kdna_symbol_gram: source=.\LangSuiteOut\upos_w2\de_upos_w2_kdna.u64 out=.\LangSuiteOut\upos_w2\de_upos_w2_self.kgram n=249964 train_n=174974 transitions=174973 unique_edges=3039 payload_bytes=777984
+file: .\LangSuiteOut\upos_w2\de_upos_w2_self.kgram
+  size:778112 fnv1a64:0x35f9105ae168ca5c
+  magic: KGRAM01
+  type: KGRAM rc:ok rules:3039 source_words:3040 source_n:249964 payload:777984
+=== KLANG CoNLL-U -> KSTREAM: en field=upos window=2 ===
+kdna_stream_conllu: in=.\en_ewt-ud-train.conllu out=.\LangSuiteOut\upos_w2\en_upos_w2.u64 field=upos window=2 stride=1 boundary=reset symbol_bits=32 records=204578 symbols=192034 skipped=2651 invalid=0
+summary=.\LangSuiteOut\upos_w2\en_upos_w2.kstream
+file: KSTREAM kind:4 flags:0x00000017 symbol_bits:32 window:2 stride:1 bins:0
+source:en_ewt-ud-train.conllu input_bytes:15034493 records:204578 symbols:192034 skipped:2651 invalid:0 max_symbols:0 payload:1536272
+min:0 max:0 scale:0 offset:0 input_hash:0x56bf9b08c1155790 symbol_hash:0xec90cbf30c8fcd33
+=== KSTREAM -> KDNA -> KGRAM: en ===
+KSTREAM -> KDNA: .\LangSuiteOut\upos_w2\en_upos_w2.u64 n=192034
+kdna_project: source=.\LangSuiteOut\upos_w2\en_upos_w2.u64 n=192034 mode=affine backend=cpu out_symbols=.\LangSuiteOut\upos_w2\en_upos_w2_kdna.u64 x:[-8,8] source:[0,4294967295] k=16
+KDNA -> KGRAM: .\LangSuiteOut\upos_w2\en_upos_w2_kdna.u64
+kdna_symbol_gram: source=.\LangSuiteOut\upos_w2\en_upos_w2_kdna.u64 out=.\LangSuiteOut\upos_w2\en_upos_w2_self.kgram n=192034 train_n=134423 transitions=134422 unique_edges=4066 payload_bytes=1040896
+file: .\LangSuiteOut\upos_w2\en_upos_w2_self.kgram
+  size:1041024 fnv1a64:0xaa9a3f903017ec30
+  magic: KGRAM01
+  type: KGRAM rc:ok rules:4066 source_words:4067 source_n:192034 payload:1040896
+=== KLANG 2x2 KFIELD Matrix ===
+KFIELD matrix from manifest: entries=2 out=.\LangSuiteOut\upos_w2\klang_upos_w2.kfield csv=.\LangSuiteOut\upos_w2\klang_upos_w2.csv
+kdna_genome_matrix: wrote .\LangSuiteOut\upos_w2\klang_upos_w2.kfield and .\LangSuiteOut\upos_w2\klang_upos_w2.csv entries=2 cells=4 train=0.69999999999999996
+  de -> de acc:0.99661283654936061 lift:+0.90634626411873742 surprise:0.0033871634506394271 oog:254
+  de -> en acc:0.98087719532198059 lift:+0.8906106228913574 surprise:0.019122804678019443 oog:1434
+  en -> de acc:0.93813574032286062 lift:+0.88897760805415726 surprise:0.061864259677139384 oog:3564
+  en -> en acc:0.98953306717583756 lift:+0.9403749349071342 surprise:0.010466932824162473 oog:603
+=== KLANG Auto NullSamples ===
+  min_test_edges=57610
+  total_test_edges=132599
+  selected_null_samples_per_cell=200000
+=== KLANG true null models ===
+kdna_field_null_matrix: row=de n=249964
+kdna_field_null_matrix: row=en n=192034
+kdna_field_null_matrix: wrote .\LangSuiteOut\upos_w2\klang_upos_w2_null.csv entries=2 modes=all sample_per_cell=200000 train=0.69999999999999996
+=== KLANG Report ===
+KLANG report written:
+  .\LangSuiteOut\upos_w2\Report\KLANG_REPORT.md
+  .\LangSuiteOut\upos_w2\Report\KLANG_REPORT.html
+KLANG v1.1 experiment complete:
+  .\LangSuiteOut\upos_w2\klang_manifest.csv
+  .\LangSuiteOut\upos_w2\klang_upos_w2.csv
+  .\LangSuiteOut\upos_w2\klang_upos_w2_null.csv
+  .\LangSuiteOut\upos_w2\klang_run_manifest.json
+  .\LangSuiteOut\upos_w2\Report\KLANG_REPORT.html
+KLANG v1.2 report written:
+
+  .\LangSuiteOut\upos_w2\ReportV12\KLANG_REPORT_V1_2.html
+  .\LangSuiteOut\upos_w2\ReportV12\tables\observed_vs_null.csv
+KLANG v1.2 full run complete:
+  .\LangSuiteOut\upos_w2\klang_upos_w2.csv
+
+  .\LangSuiteOut\upos_w2\ReportV12\KLANG_REPORT_V1_2.html
+=== KLANG SUITE: upos_w3 ===
+=== KLANG CoNLL-U -> KSTREAM: de field=upos window=3 ===
+kdna_stream_conllu: in=.\de_gsd-ud-train.conllu out=.\LangSuiteOut\upos_w3\de_upos_w3.u64 field=upos window=3 stride=1 boundary=reset symbol_bits=32 records=263777 symbols=236151 skipped=4610 invalid=0
+summary=.\LangSuiteOut\upos_w3\de_upos_w3.kstream
+file: KSTREAM kind:4 flags:0x00000017 symbol_bits:32 window:3 stride:1 bins:0
+source:de_gsd-ud-train.conllu input_bytes:19637803 records:263777 symbols:236151 skipped:4610 invalid:0 max_symbols:0 payload:1889208
+min:0 max:0 scale:0 offset:0 input_hash:0xe65c5cb8d2167e4e symbol_hash:0xc5edafbab46cb0cf
+=== KSTREAM -> KDNA -> KGRAM: de ===
+KSTREAM -> KDNA: .\LangSuiteOut\upos_w3\de_upos_w3.u64 n=236151
+kdna_project: source=.\LangSuiteOut\upos_w3\de_upos_w3.u64 n=236151 mode=affine backend=cpu out_symbols=.\LangSuiteOut\upos_w3\de_upos_w3_kdna.u64 x:[-8,8] source:[0,4294967295] k=16
+KDNA -> KGRAM: .\LangSuiteOut\upos_w3\de_upos_w3_kdna.u64
+kdna_symbol_gram: source=.\LangSuiteOut\upos_w3\de_upos_w3_kdna.u64 out=.\LangSuiteOut\upos_w3\de_upos_w3_self.kgram n=236151 train_n=165305 transitions=165304 unique_edges=16283 payload_bytes=4168448
+file: .\LangSuiteOut\upos_w3\de_upos_w3_self.kgram
+  size:4168576 fnv1a64:0x85ab7b3e7027aa54
+  magic: KGRAM01
+  type: KGRAM rc:ok rules:16283 source_words:16284 source_n:236151 payload:4168448
+=== KLANG CoNLL-U -> KSTREAM: en field=upos window=3 ===
+kdna_stream_conllu: in=.\en_ewt-ud-train.conllu out=.\LangSuiteOut\upos_w3\en_upos_w3.u64 field=upos window=3 stride=1 boundary=reset symbol_bits=32 records=204578 symbols=180011 skipped=2651 invalid=0
+summary=.\LangSuiteOut\upos_w3\en_upos_w3.kstream
+file: KSTREAM kind:4 flags:0x00000017 symbol_bits:32 window:3 stride:1 bins:0
+source:en_ewt-ud-train.conllu input_bytes:15034493 records:204578 symbols:180011 skipped:2651 invalid:0 max_symbols:0 payload:1440088
+min:0 max:0 scale:0 offset:0 input_hash:0x56bf9b08c1155790 symbol_hash:0xe6e5d46cc37d28eb
+=== KSTREAM -> KDNA -> KGRAM: en ===
+KSTREAM -> KDNA: .\LangSuiteOut\upos_w3\en_upos_w3.u64 n=180011
+kdna_project: source=.\LangSuiteOut\upos_w3\en_upos_w3.u64 n=180011 mode=affine backend=cpu out_symbols=.\LangSuiteOut\upos_w3\en_upos_w3_kdna.u64 x:[-8,8] source:[0,4294967295] k=16
+KDNA -> KGRAM: .\LangSuiteOut\upos_w3\en_upos_w3_kdna.u64
+kdna_symbol_gram: source=.\LangSuiteOut\upos_w3\en_upos_w3_kdna.u64 out=.\LangSuiteOut\upos_w3\en_upos_w3_self.kgram n=180011 train_n=126007 transitions=126006 unique_edges=18006 payload_bytes=4609536
+file: .\LangSuiteOut\upos_w3\en_upos_w3_self.kgram
+  size:4609664 fnv1a64:0x6d9b97e02e3653bb
+  magic: KGRAM01
+  type: KGRAM rc:ok rules:18006 source_words:18007 source_n:180011 payload:4609536
+=== KLANG 2x2 KFIELD Matrix ===
+KFIELD matrix from manifest: entries=2 out=.\LangSuiteOut\upos_w3\klang_upos_w3.kfield csv=.\LangSuiteOut\upos_w3\klang_upos_w3.csv
+kdna_genome_matrix: wrote .\LangSuiteOut\upos_w3\klang_upos_w3.kfield and .\LangSuiteOut\upos_w3\klang_upos_w3.csv entries=2 cells=4 train=0.69999999999999996
+  de -> de acc:0.96033594466793704 lift:+0.91906274260709997 surprise:0.039664055332062957 oog:2810
+  de -> en acc:0.85032112357964573 lift:+0.80904792151880867 surprise:0.1496788764203543 oog:10604
+  en -> de acc:0.69672055256189469 lift:+0.67653648871358996 surprise:0.30327944743810531 oog:16378
+  en -> en acc:0.92048589893154087 lift:+0.90030183508323613 surprise:0.079514101068459159 oog:4294
+=== KLANG Auto NullSamples ===
+  min_test_edges=54003
+  total_test_edges=124848
+  selected_null_samples_per_cell=200000
+=== KLANG true null models ===
+kdna_field_null_matrix: row=de n=236151
+kdna_field_null_matrix: row=en n=180011
+kdna_field_null_matrix: wrote .\LangSuiteOut\upos_w3\klang_upos_w3_null.csv entries=2 modes=all sample_per_cell=200000 train=0.69999999999999996
+=== KLANG Report ===
+KLANG report written:
+  .\LangSuiteOut\upos_w3\Report\KLANG_REPORT.md
+  .\LangSuiteOut\upos_w3\Report\KLANG_REPORT.html
+KLANG v1.1 experiment complete:
+  .\LangSuiteOut\upos_w3\klang_manifest.csv
+  .\LangSuiteOut\upos_w3\klang_upos_w3.csv
+  .\LangSuiteOut\upos_w3\klang_upos_w3_null.csv
+  .\LangSuiteOut\upos_w3\klang_run_manifest.json
+  .\LangSuiteOut\upos_w3\Report\KLANG_REPORT.html
+KLANG v1.2 report written:
+
+  .\LangSuiteOut\upos_w3\ReportV12\KLANG_REPORT_V1_2.html
+  .\LangSuiteOut\upos_w3\ReportV12\tables\observed_vs_null.csv
+KLANG v1.2 full run complete:
+  .\LangSuiteOut\upos_w3\klang_upos_w3.csv
+
+  .\LangSuiteOut\upos_w3\ReportV12\KLANG_REPORT_V1_2.html
+=== KLANG SUITE: upos_deprel_w2 ===
+=== KLANG CoNLL-U -> KSTREAM: de field=upos_deprel window=2 ===
+kdna_stream_conllu: in=.\de_gsd-ud-train.conllu out=.\LangSuiteOut\upos_deprel_w2\de_upos_deprel_w2.u64 field=upos_deprel window=2 stride=1 boundary=reset symbol_bits=32 records=263777 symbols=249964 skipped=4610 invalid=0
+summary=.\LangSuiteOut\upos_deprel_w2\de_upos_deprel_w2.kstream
+file: KSTREAM kind:4 flags:0x00000017 symbol_bits:32 window:2 stride:1 bins:0
+source:de_gsd-ud-train.conllu input_bytes:19637803 records:263777 symbols:249964 skipped:4610 invalid:0 max_symbols:0 payload:1999712
+min:0 max:0 scale:0 offset:0 input_hash:0xe65c5cb8d2167e4e symbol_hash:0x6370248a65732b28
+=== KSTREAM -> KDNA -> KGRAM: de ===
+KSTREAM -> KDNA: .\LangSuiteOut\upos_deprel_w2\de_upos_deprel_w2.u64 n=249964
+kdna_project: source=.\LangSuiteOut\upos_deprel_w2\de_upos_deprel_w2.u64 n=249964 mode=affine backend=cpu out_symbols=.\LangSuiteOut\upos_deprel_w2\de_upos_deprel_w2_kdna.u64 x:[-8,8] source:[0,4294967295] k=16
+KDNA -> KGRAM: .\LangSuiteOut\upos_deprel_w2\de_upos_deprel_w2_kdna.u64
+kdna_symbol_gram: source=.\LangSuiteOut\upos_deprel_w2\de_upos_deprel_w2_kdna.u64 out=.\LangSuiteOut\upos_deprel_w2\de_upos_deprel_w2_self.kgram n=249964 train_n=174974 transitions=174973 unique_edges=22820 payload_bytes=5841920
+file: .\LangSuiteOut\upos_deprel_w2\de_upos_deprel_w2_self.kgram
+  size:5842048 fnv1a64:0xc9998247594e16e7
+  magic: KGRAM01
+  type: KGRAM rc:ok rules:22820 source_words:22821 source_n:249964 payload:5841920
+=== KLANG CoNLL-U -> KSTREAM: en field=upos_deprel window=2 ===
+kdna_stream_conllu: in=.\en_ewt-ud-train.conllu out=.\LangSuiteOut\upos_deprel_w2\en_upos_deprel_w2.u64 field=upos_deprel window=2 stride=1 boundary=reset symbol_bits=32 records=204578 symbols=192034 skipped=2651 invalid=0
+summary=.\LangSuiteOut\upos_deprel_w2\en_upos_deprel_w2.kstream
+file: KSTREAM kind:4 flags:0x00000017 symbol_bits:32 window:2 stride:1 bins:0
+source:en_ewt-ud-train.conllu input_bytes:15034493 records:204578 symbols:192034 skipped:2651 invalid:0 max_symbols:0 payload:1536272
+min:0 max:0 scale:0 offset:0 input_hash:0x56bf9b08c1155790 symbol_hash:0x1fb0b74cf32a68c3
+=== KSTREAM -> KDNA -> KGRAM: en ===
+KSTREAM -> KDNA: .\LangSuiteOut\upos_deprel_w2\en_upos_deprel_w2.u64 n=192034
+kdna_project: source=.\LangSuiteOut\upos_deprel_w2\en_upos_deprel_w2.u64 n=192034 mode=affine backend=cpu out_symbols=.\LangSuiteOut\upos_deprel_w2\en_upos_deprel_w2_kdna.u64 x:[-8,8] source:[0,4294967295] k=16
+KDNA -> KGRAM: .\LangSuiteOut\upos_deprel_w2\en_upos_deprel_w2_kdna.u64
+kdna_symbol_gram: source=.\LangSuiteOut\upos_deprel_w2\en_upos_deprel_w2_kdna.u64 out=.\LangSuiteOut\upos_deprel_w2\en_upos_deprel_w2_self.kgram n=192034 train_n=134423 transitions=134422 unique_edges=24039 payload_bytes=6153984
+file: .\LangSuiteOut\upos_deprel_w2\en_upos_deprel_w2_self.kgram
+  size:6154112 fnv1a64:0xc60d5a7ee24dd285
+  magic: KGRAM01
+  type: KGRAM rc:ok rules:24039 source_words:24040 source_n:192034 payload:6153984
+=== KLANG 2x2 KFIELD Matrix ===
+KFIELD matrix from manifest: entries=2 out=.\LangSuiteOut\upos_deprel_w2\klang_upos_deprel_w2.kfield csv=.\LangSuiteOut\upos_deprel_w2\klang_upos_deprel_w2.csv
+kdna_genome_matrix: wrote .\LangSuiteOut\upos_deprel_w2\klang_upos_deprel_w2.kfield and .\LangSuiteOut\upos_deprel_w2\klang_upos_deprel_w2.csv entries=2 cells=4 train=0.69999999999999996
+  de -> de acc:0.9356305591486751 lift:+0.87746202776407201 surprise:0.064369440851324858 oog:4827
+  de -> en acc:0.66275053674538931 lift:+0.60458200536078621 surprise:0.33724946325461069 oog:25290
+  en -> de acc:0.5955042527339004 lift:+0.56901579586877282 surprise:0.40449574726609966 oog:23303
+  en -> en acc:0.88939420239541744 lift:+0.86290574553028987 surprise:0.11060579760458254 oog:6372
+=== KLANG Auto NullSamples ===
+  min_test_edges=57610
+  total_test_edges=132599
+  selected_null_samples_per_cell=200000
+=== KLANG true null models ===
+kdna_field_null_matrix: row=de n=249964
+kdna_field_null_matrix: row=en n=192034
+kdna_field_null_matrix: wrote .\LangSuiteOut\upos_deprel_w2\klang_upos_deprel_w2_null.csv entries=2 modes=all sample_per_cell=200000 train=0.69999999999999996
+=== KLANG Report ===
+KLANG report written:
+  .\LangSuiteOut\upos_deprel_w2\Report\KLANG_REPORT.md
+  .\LangSuiteOut\upos_deprel_w2\Report\KLANG_REPORT.html
+KLANG v1.1 experiment complete:
+  .\LangSuiteOut\upos_deprel_w2\klang_manifest.csv
+  .\LangSuiteOut\upos_deprel_w2\klang_upos_deprel_w2.csv
+  .\LangSuiteOut\upos_deprel_w2\klang_upos_deprel_w2_null.csv
+  .\LangSuiteOut\upos_deprel_w2\klang_run_manifest.json
+  .\LangSuiteOut\upos_deprel_w2\Report\KLANG_REPORT.html
+KLANG v1.2 report written:
+
+  .\LangSuiteOut\upos_deprel_w2\ReportV12\KLANG_REPORT_V1_2.html
+  .\LangSuiteOut\upos_deprel_w2\ReportV12\tables\observed_vs_null.csv
+KLANG v1.2 full run complete:
+  .\LangSuiteOut\upos_deprel_w2\klang_upos_deprel_w2.csv
+
+  .\LangSuiteOut\upos_deprel_w2\ReportV12\KLANG_REPORT_V1_2.html
+KLANG suite complete: .\LangSuiteOut
+PS H:\kdna_opencl_with_inspector_krun>
+
+
+
+PS H:\kdna_opencl_with_inspector_krun> Get-Content .\LangSuiteOut\upos_w2\ReportV12\tables\observed_vs_null.csv
+"row","col","class","observed_accuracy","baseline_accuracy","lift","surprise_rate","out_of_grammar","grammar_edges","avg_null_accuracy","observed_minus_null","null_modes"
+"de","de","self","0,996612836549361","0,0902665724306232","0,906346264118737","0,00338716345063943","254","3039","0,244213595771824","0,752399240777536","symbol_shuffle|rotation|block_boundary"
+"de","en","cross","0,980877195321981","0,0902665724306232","0,890610622891357","0,0191228046780194","1434","4066","0,291051576453435","0,689825618868545","symbol_shuffle|rotation|block_boundary"
+"en","de","cross","0,938135740322861","0,0491581322687034","0,888977608054157","0,0618642596771394","3564","3039","0,185772146039461","0,7523635942834","symbol_shuffle|rotation|block_boundary"
+"en","en","self","0,989533067175838","0,0491581322687034","0,940374934907134","0,0104669328241625","603","4066","0,237157900827403","0,752375166348435","symbol_shuffle|rotation|block_boundary"
+PS H:\kdna_opencl_with_inspector_krun> Get-Content .\LangSuiteOut\upos_w3\ReportV12\tables\observed_vs_null.csv
+"row","col","class","observed_accuracy","baseline_accuracy","lift","surprise_rate","out_of_grammar","grammar_edges","avg_null_accuracy","observed_minus_null","null_modes"
+"de","de","self","0,960335944667937","0,041273202060837","0,9190627426071","0,039664055332063","2810","16283","0,0833980285600019","0,876937916107935","symbol_shuffle|rotation|block_boundary"
+"de","en","cross","0,850321123579646","0,041273202060837","0,809047921518809","0,149678876420354","10604","18006","0,0575011174630061","0,79282000611664","symbol_shuffle|rotation|block_boundary"
+"en","de","cross","0,696720552561895","0,0201840638483047","0,67653648871359","0,303279447438105","16378","16283","0,0351276780919579","0,661592874469937","symbol_shuffle|rotation|block_boundary"
+"en","en","self","0,920485898931541","0,0201840638483047","0,900301835083236","0,0795141010684592","4294","18006","0,0535464079156096","0,866939491015931","symbol_shuffle|rotation|block_boundary"
+PS H:\kdna_opencl_with_inspector_krun> Get-Content .\LangSuiteOut\upos_deprel_w2\ReportV12\tables\observed_vs_null.csv
+"row","col","class","observed_accuracy","baseline_accuracy","lift","surprise_rate","out_of_grammar","grammar_edges","avg_null_accuracy","observed_minus_null","null_modes"
+"de","de","self","0,935630559148675","0,0581685313846031","0,877462027764072","0,0643694408513249","4827","22820","0,0881551516444634","0,847475407504212","symbol_shuffle|rotation|block_boundary"
+"de","en","cross","0,662750536745389","0,0581685313846031","0,604582005360786","0,337249463254611","25290","24039","0,0594487191454747","0,603301817599915","symbol_shuffle|rotation|block_boundary"
+"en","de","cross","0,5955042527339","0,0264884568651276","0,569015795868773","0,4044957472661","23303","22820","0,0483885899438755","0,547115662790025","symbol_shuffle|rotation|block_boundary"
+"en","en","self","0,889394202395417","0,0264884568651276","0,86290574553029","0,110605797604583","6372","24039","0,0629636058554649","0,826430596539953","symbol_shuffle|rotation|block_boundary"
+PS H:\kdna_opencl_with_inspector_krun>
+
+
+
+PS H:\kdna_opencl_with_inspector_krun> cd H:\kdna_opencl_with_inspector_krun
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> # 1. Patch-Script im entpackten Ordner automatisch finden
+PS H:\kdna_opencl_with_inspector_krun> $Apply = Get-ChildItem .\_patch_kllib102 -Recurse -Filter apply_klang_library_v1_0_2_abi_fix.ps1 |
+>>   Select-Object -First 1
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> $Apply.FullName
+H:\kdna_opencl_with_inspector_krun\_patch_kllib102\klang_library_v1_0_2_abi_fix2\scripts\apply_klang_library_v1_0_2_abi_fix.ps1
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> # 2. Patch anwenden
+PS H:\kdna_opencl_with_inspector_krun> & $Apply.FullName -ProjectRoot H:\kdna_opencl_with_inspector_krun
+KLANG_LIBRARY v1.0.2 ABI-Fix angewendet:
+  H:\kdna_opencl_with_inspector_krun\include\kdna_kllib.h
+Fix:
+  header_record = 256 Byte via reserved[120]
+  config_record = 1024 Byte ohne trailing reserved
+  cell_record   = 512 Byte via reserved[264]
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> # 3. Prüfen, ob wirklich der neue Header im Projekt liegt
+PS H:\kdna_opencl_with_inspector_krun> Select-String -Path .\include\kdna_kllib.h `
+>>   -Pattern "reserved\[120\]","config_record_must_be_1024","cell_record_must_be_512" `
+>>   -Context 0,1
+
+> include\kdna_kllib.h:64:    uint8_t reserved[120];
+  include\kdna_kllib.h:65:} kdna_kllib_header;
+> include\kdna_kllib.h:146:typedef char kdna_kllib_config_record_must_be_1024[(sizeof(kdna_kllib_config_record) ==
+KDNA_KLLIB_CONFIG_RECORD_BYTES) ? 1 : -1];
+> include\kdna_kllib.h:147:typedef char kdna_kllib_cell_record_must_be_512[(sizeof(kdna_kllib_cell_record) ==
+KDNA_KLLIB_CELL_RECORD_BYTES) ? 1 : -1];
+  include\kdna_kllib.h:148:
+
+
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> # 4. Neu konfigurieren und bauen
+PS H:\kdna_opencl_with_inspector_krun> $CMAKE_EXE  = "C:\Program Files\CMake\bin\cmake.exe"
+PS H:\kdna_opencl_with_inspector_krun> $CTEST_EXE  = "C:\Program Files\CMake\bin\ctest.exe"
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> & $CMAKE_EXE -S . -B build_vs `
+>>   -G "Visual Studio 17 2022" `
+>>   -A x64
+-- Selecting Windows SDK version 10.0.26100.0 to target Windows 10.0.29599.
+-- Configuring done (0.0s)
+-- Generating done (0.6s)
+-- Build files have been written to: H:/kdna_opencl_with_inspector_krun/build_vs
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> & $CMAKE_EXE --build build_vs --config Release --target kdna_klang_library
+MSBuild-Version 17.14.40+3e7442088 für .NET Framework
+
+  kdna.vcxproj -> H:\kdna_opencl_with_inspector_krun\build_vs\Release\kdna.lib
+  kdna_klang_library.c
+  kdna_klang_library.vcxproj -> H:\kdna_opencl_with_inspector_krun\build_vs\Release\kdna_klang_library.exe
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> # 5. Help-Test
+PS H:\kdna_opencl_with_inspector_krun> & $CTEST_EXE --test-dir build_vs -C Release -R "klang_library_help" --output-on-failure
+Test project H:/kdna_opencl_with_inspector_krun/build_vs
+    Start 83: klang_library_help
+1/1 Test #83: klang_library_help ...............   Passed    0.02 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   0.03 sec
+PS H:\kdna_opencl_with_inspector_krun> .\scripts\klang_library_from_suite.ps1 `
+>>   -SuiteDir .\LangSuiteOut `
+>>   -Out .\LangSuiteOut\klang_library.kllib `
+>>   -Json .\LangSuiteOut\klang_library.json `
+>>   -Csv .\LangSuiteOut\klang_library_cells.csv `
+>>   -Exe .\build_vs\Release\kdna_klang_library.exe `
+>>   -Strict
+KLANG_LIBRARY: configs= 4
+kdna_klang_library: wrote .\LangSuiteOut\klang_library.kllib configs=4 cells=16 total_artifact_bytes=36864144 hash=0x4f95d1382b6bdd9b
+json=.\LangSuiteOut\klang_library.json
+csv=.\LangSuiteOut\klang_library_cells.csv
+file: .\LangSuiteOut\klang_library.kllib
+  magic: KLLIB001 version:1 configs:4 cells:16
+  config_record_bytes:1024 cell_record_bytes:512 header_bytes:256
+  total_de_symbols:999856 total_en_symbols:768657
+  total_de_kgram_rules:42322 total_en_kgram_rules:46325
+  artifact_bytes:36864144 flags:0xf hash:0x4f95d1382b6bdd9b
+  avg_self_acc:0.961483684013 avg_cross_acc:0.84014899504
+  avg_self_delta:0.615501985309 avg_cross_delta:0.506771403716
+KLANG_LIBRARY complete:
+  .\LangSuiteOut\klang_library.kllib
+  .\LangSuiteOut\klang_library.json
+  .\LangSuiteOut\klang_library_cells.csv
+PS H:\kdna_opencl_with_inspector_krun>
+
+
+PS H:\kdna_opencl_with_inspector_krun> Get-Content .\LangSuiteOut\klang_library_cells.csv
+config,row,col,class,observed_accuracy,baseline_accuracy,lift,surprise_rate,out_of_grammar,grammar_edges,avg_null_accuracy,observed_minus_null,null_modes
+upos_deprel_w2,de,de,self,0.93563055914867499,0.058168531384603102,0.87746202776407201,0.064369440851324899,4827,22820,0.0881551516444634,0.84747540750421202,symbol_shuffle|rotation|block_boundary
+upos_deprel_w2,de,en,cross,0.66275053674538897,0.058168531384603102,0.60458200536078599,0.33724946325461103,25290,24039,0.059448719145474699,0.60330181759991497,symbol_shuffle|rotation|block_boundary
+upos_deprel_w2,en,de,cross,0.59550425273389995,0.026488456865127599,0.56901579586877304,0.40449574726609999,23303,22820,0.048388589943875501,0.54711566279002499,symbol_shuffle|rotation|block_boundary
+upos_deprel_w2,en,en,self,0.889394202395417,0.026488456865127599,0.86290574553028998,0.110605797604583,6372,24039,0.062963605855464899,0.82643059653995299,symbol_shuffle|rotation|block_boundary
+upos_w1,de,de,self,0.99997472609404403,0.22904477272440099,0.77092995336964398,2.52739059557959e-05,2,180,0.99936394003344597,0.00061078606059838903,symbol_shuffle|rotation|block_boundary
+upos_w1,de,en,cross,0.99996208914106599,0.22904477272440099,0.77091731641666605,3.7910858933693899e-05,3,214,0.99991996596447297,4.2123176592912002e-05,symbol_shuffle|rotation|block_boundary
+upos_w1,en,de,cross,0.99692046991348005,0.211721766900754,0.78519870301272499,0.0030795300865201301,189,180,0.98981093749151405,0.0071095324219662102,symbol_shuffle|rotation|block_boundary
+upos_w1,en,en,self,0.99990223714011095,0.211721766900754,0.788180470239356,9.7762859889527994e-05,6,214,0.999054959021068,0.00084727811904250505,symbol_shuffle|rotation|block_boundary
+upos_w2,de,de,self,0.99661283654936095,0.090266572430623193,0.90634626411873698,0.0033871634506394302,254,3039,0.244213595771824,0.75239924077753595,symbol_shuffle|rotation|block_boundary
+upos_w2,de,en,cross,0.98087719532198103,0.090266572430623193,0.89061062289135695,0.019122804678019401,1434,4066,0.29105157645343499,0.68982561886854499,symbol_shuffle|rotation|block_boundary
+upos_w2,en,de,cross,0.93813574032286096,0.0491581322687034,0.88897760805415704,0.061864259677139398,3564,3039,0.18577214603946099,0.75236359428340005,symbol_shuffle|rotation|block_boundary
+upos_w2,en,en,self,0.989533067175838,0.0491581322687034,0.94037493490713397,0.0104669328241625,603,4066,0.23715790082740301,0.75237516634843504,symbol_shuffle|rotation|block_boundary
+upos_w3,de,de,self,0.96033594466793704,0.041273202060836997,0.91906274260709997,0.039664055332062999,2810,16283,0.083398028560001905,0.87693791610793503,symbol_shuffle|rotation|block_boundary
+upos_w3,de,en,cross,0.85032112357964595,0.041273202060836997,0.809047921518809,0.14967887642035399,10604,18006,0.057501117463006103,0.79282000611664005,symbol_shuffle|rotation|block_boundary
+upos_w3,en,de,cross,0.69672055256189502,0.020184063848304699,0.67653648871358996,0.30327944743810498,16378,16283,0.035127678091957902,0.66159287446993698,symbol_shuffle|rotation|block_boundary
+upos_w3,en,en,self,0.92048589893154098,0.020184063848304699,0.90030183508323602,0.0795141010684592,4294,18006,0.053546407915609599,0.86693949101593104,symbol_shuffle|rotation|block_boundary
+PS H:\kdna_opencl_with_inspector_krun>
+
+
+
+PS H:\kdna_opencl_with_inspector_krun> Get-ChildItem .\LangTriadOut\upos_w2 |
+>>   Sort-Object Name |
+>>   Select-Object Name,Length,LastWriteTime
+
+Name                        Length LastWriteTime
+----                        ------ -------------
+ar_upos_w2.kstream             256 01.06.2026 09:29:02
+ar_upos_w2.u64             1742448 01.06.2026 09:29:02
+ar_upos_w2_kdna.u64        1742448 01.06.2026 09:29:04
+ar_upos_w2_self.kgram       654464 01.06.2026 09:29:04
+de_upos_w2.kstream             256 01.06.2026 09:29:02
+de_upos_w2.u64             1999712 01.06.2026 09:29:02
+de_upos_w2_kdna.u64        1999712 01.06.2026 09:29:02
+de_upos_w2_self.kgram       778112 01.06.2026 09:29:02
+en_upos_w2.kstream             256 01.06.2026 09:29:02
+en_upos_w2.u64             1536272 01.06.2026 09:29:02
+en_upos_w2_kdna.u64        1536272 01.06.2026 09:29:02
+en_upos_w2_self.kgram      1041024 01.06.2026 09:29:02
+klang_manifest.csv             499 01.06.2026 09:29:04
+klang_upos_w2_triad.csv       1601 01.06.2026 09:29:04
+klang_upos_w2_triad.kfield    2432 01.06.2026 09:29:04
+ReportV12                          01.06.2026 09:29:02
+
+
+PS H:\kdna_opencl_with_inspector_krun> Test-Path .\LangTriadOut\upos_w2\de_upos_w2_kdna.u64
+True
+PS H:\kdna_opencl_with_inspector_krun> Test-Path .\LangTriadOut\upos_w2\de_upos_w2_self.kgram
+True
+PS H:\kdna_opencl_with_inspector_krun> Test-Path .\LangTriadOut\upos_w2\en_upos_w2_kdna.u64
+True
+PS H:\kdna_opencl_with_inspector_krun> Test-Path .\LangTriadOut\upos_w2\en_upos_w2_self.kgram
+True
+PS H:\kdna_opencl_with_inspector_krun> Test-Path .\LangTriadOut\upos_w2\ar_upos_w2_kdna.u64
+True
+PS H:\kdna_opencl_with_inspector_krun> Test-Path .\LangTriadOut\upos_w2\ar_upos_w2_self.kgram
+True
+PS H:\kdna_opencl_with_inspector_krun> cd H:\kdna_opencl_with_inspector_krun
+PS H:\kdna_opencl_with_inspector_krun> $ErrorActionPreference = "Stop"
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> $OutDir = ".\LangTriadOut\upos_w2"
+PS H:\kdna_opencl_with_inspector_krun> $Field = "upos"
+PS H:\kdna_opencl_with_inspector_krun> $Window = 2
+PS H:\kdna_opencl_with_inspector_krun> $Train = 0.70
+PS H:\kdna_opencl_with_inspector_krun> $NullSamples = 200000
+PS H:\kdna_opencl_with_inspector_krun> $Seed = "0x4b4c414e47545249"
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> $Entries = @(
+>>   @{ name = "de" },
+>>   @{ name = "en" },
+>>   @{ name = "ar" }
+>> )
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> $Manifest = Join-Path $OutDir "klang_manifest.csv"
+PS H:\kdna_opencl_with_inspector_krun> $Matrix = Join-Path $OutDir "klang_upos_w2_triad.kfield"
+PS H:\kdna_opencl_with_inspector_krun> $MatrixCsv = Join-Path $OutDir "klang_upos_w2_triad.csv"
+PS H:\kdna_opencl_with_inspector_krun> $NullCsv = Join-Path $OutDir "klang_upos_w2_triad_null.csv"
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> $Lines = @("name,symbols,grammar")
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> foreach ($E in $Entries) {
+>>   $Name = $E.name
+>>   $Base = "$Name`_$Field`_w$Window"
+>>
+>>   $KDNA = Join-Path $OutDir "$Base`_kdna.u64"
+>>   $KGRAM = Join-Path $OutDir "$Base`_self.kgram"
+>>
+>>   if (-not (Test-Path $KDNA)) { throw "KDNA fehlt vor Manifest: $KDNA" }
+>>   if (-not (Test-Path $KGRAM)) { throw "KGRAM fehlt vor Manifest: $KGRAM" }
+>>
+>>   $Lines += "$Name,$((Get-Item $KDNA).FullName),$((Get-Item $KGRAM).FullName)"
+>> }
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> Set-Content -Encoding UTF8 $Manifest $Lines
+PS H:\kdna_opencl_with_inspector_krun> Get-Content $Manifest
+name,symbols,grammar
+de,H:\kdna_opencl_with_inspector_krun\LangTriadOut\upos_w2\de_upos_w2_kdna.u64,H:\kdna_opencl_with_inspector_krun\LangTriadOut\upos_w2\de_upos_w2_self.kgram
+en,H:\kdna_opencl_with_inspector_krun\LangTriadOut\upos_w2\en_upos_w2_kdna.u64,H:\kdna_opencl_with_inspector_krun\LangTriadOut\upos_w2\en_upos_w2_self.kgram
+ar,H:\kdna_opencl_with_inspector_krun\LangTriadOut\upos_w2\ar_upos_w2_kdna.u64,H:\kdna_opencl_with_inspector_krun\LangTriadOut\upos_w2\ar_upos_w2_self.kgram
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> .\scripts\kfield_matrix_from_manifest.ps1 `
+>>   -Manifest $Manifest `
+>>   -Out $Matrix `
+>>   -Csv $MatrixCsv `
+>>   -Train $Train `
+>>   -Bins 32
+KFIELD matrix from manifest: entries=3 out=.\LangTriadOut\upos_w2\klang_upos_w2_triad.kfield csv=.\LangTriadOut\upos_w2\klang_upos_w2_triad.csv
+kdna_genome_matrix: wrote .\LangTriadOut\upos_w2\klang_upos_w2_triad.kfield and .\LangTriadOut\upos_w2\klang_upos_w2_triad.csv entries=3 cells=9 train=0.69999999999999996
+  de -> de acc:0.99661283654936061 lift:+0.90634626411873742 surprise:0.0033871634506394271 oog:254
+  de -> en acc:0.98087719532198059 lift:+0.8906106228913574 surprise:0.019122804678019443 oog:1434
+  de -> ar acc:0.71415807651788932 lift:+0.62389150408726612 surprise:0.28584192348211068 oog:21435
+  en -> de acc:0.93813574032286062 lift:+0.88897760805415726 surprise:0.061864259677139384 oog:3564
+  en -> en acc:0.98953306717583756 lift:+0.9403749349071342 surprise:0.010466932824162473 oog:603
+  en -> ar acc:0.76986634264884568 lift:+0.72070821038014232 surprise:0.23013365735115432 oog:13258
+  ar -> de acc:0.86868887834590836 lift:+0.74671339587701435 surprise:0.13131112165409162 oog:8580
+  ar -> en acc:0.89917509679986529 lift:+0.77719961433097129 surprise:0.10082490320013468 oog:6588
+  ar -> ar acc:0.99484244195834159 lift:+0.87286695948944759 surprise:0.0051575580416583769 oog:337
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> .\build_vs\Release\kdna_field_null_matrix.exe `
+>>   --manifest $Manifest `
+>>   --out $NullCsv `
+>>   --mode all `
+>>   --sample-per-cell $NullSamples `
+>>   --train $Train `
+>>   --seed $Seed `
+>>   --block-size 4096 `
+>>   --rotation-offset 4096
+cannot read manifest .\LangTriadOut\upos_w2\klang_manifest.csv
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> .\scripts\klang_report_v1_2.ps1 `
+>>   -OutDir $OutDir `
+>>   -MatrixCsv $MatrixCsv `
+>>   -NullCsv $NullCsv `
+>>   -ReportDir (Join-Path $OutDir "ReportV12") `
+>>   -Title "KLANG_REPORT v1.2 - DE/EN/AR UPOS w2"
+KLANG v1.2 report written:
+
+  .\LangTriadOut\upos_w2\ReportV12\KLANG_REPORT_V1_2.html
+  .\LangTriadOut\upos_w2\ReportV12\tables\observed_vs_null.csv
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> Get-Content $MatrixCsv
+row,col,n,train_n,unique_variants,grammar_edges,test_transitions,entropy_raw,baseline_accuracy,kgram_accuracy,lift,out_of_grammar,surprise_rate,compression_ratio
+de,de,249964,174974,235,3039,74989,6.166274362556325,0.090266572430623152,0.99661283654936061,0.90634626411873742,254,0.0033871634506394271,1063.6765957446808
+de,en,249964,174974,235,4066,74989,6.166274362556325,0.090266572430623152,0.98087719532198059,0.8906106228913574,1434,0.019122804678019443,1063.6765957446808
+de,ar,249964,174974,235,2556,74989,6.166274362556325,0.090266572430623152,0.71415807651788932,0.62389150408726612,21435,0.28584192348211068,1063.6765957446808
+en,de,192034,134423,280,3039,57610,6.5264946852960533,0.049158132268703351,0.93813574032286062,0.88897760805415726,3564,0.061864259677139384,685.83571428571429
+en,en,192034,134423,280,4066,57610,6.5264946852960533,0.049158132268703351,0.98953306717583756,0.9403749349071342,603,0.010466932824162473,685.83571428571429
+en,ar,192034,134423,280,2556,57610,6.5264946852960533,0.049158132268703351,0.76986634264884568,0.72070821038014232,13258,0.23013365735115432,685.83571428571429
+ar,de,217806,152464,236,3039,65341,5.6781120870529831,0.12197548246889396,0.86868887834590836,0.74671339587701435,8580,0.13131112165409162,922.90677966101691
+ar,en,217806,152464,236,4066,65341,5.6781120870529831,0.12197548246889396,0.89917509679986529,0.77719961433097129,6588,0.10082490320013468,922.90677966101691
+ar,ar,217806,152464,236,2556,65341,5.6781120870529831,0.12197548246889396,0.99484244195834159,0.87286695948944759,337,0.0051575580416583769,922.90677966101691
+PS H:\kdna_opencl_with_inspector_krun> Get-Content .\LangTriadOut\upos_w2\ReportV12\tables\observed_vs_null.csv
+"row","col","class","observed_accuracy","baseline_accuracy","lift","surprise_rate","out_of_grammar","grammar_edges","avg_null_accuracy","observed_minus_null","null_modes"
+"de","de","self","0,996612836549361","0,0902665724306232","0,906346264118737","0,00338716345063943","254","3039","0","0,996612836549361",""
+"de","en","cross","0,980877195321981","0,0902665724306232","0,890610622891357","0,0191228046780194","1434","4066","0","0,980877195321981",""
+"de","ar","cross","0,714158076517889","0,0902665724306232","0,623891504087266","0,285841923482111","21435","2556","0","0,714158076517889",""
+"en","de","cross","0,938135740322861","0,0491581322687034","0,888977608054157","0,0618642596771394","3564","3039","0","0,938135740322861",""
+"en","en","self","0,989533067175838","0,0491581322687034","0,940374934907134","0,0104669328241625","603","4066","0","0,989533067175838",""
+"en","ar","cross","0,769866342648846","0,0491581322687034","0,720708210380142","0,230133657351154","13258","2556","0","0,769866342648846",""
+"ar","de","cross","0,868688878345908","0,121975482468894","0,746713395877014","0,131311121654092","8580","3039","0","0,868688878345908",""
+"ar","en","cross","0,899175096799865","0,121975482468894","0,777199614330971","0,100824903200135","6588","4066","0","0,899175096799865",""
+"ar","ar","self","0,994842441958342","0,121975482468894","0,872866959489448","0,00515755804165838","337","2556","0","0,994842441958342",""
+PS H:\kdna_opencl_with_inspector_krun>
+
+
+PS H:\kdna_opencl_with_inspector_krun> cd H:\kdna_opencl_with_inspector_krun
+PS H:\kdna_opencl_with_inspector_krun> $ErrorActionPreference = "Stop"
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> $OutDir = ".\LangTriadOut\upos_w2"
+PS H:\kdna_opencl_with_inspector_krun> $Train = 0.70
+PS H:\kdna_opencl_with_inspector_krun> $NullSamples = 200000
+PS H:\kdna_opencl_with_inspector_krun> $Seed = "0x4b4c414e47545249"
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> $Manifest = (Get-Item (Join-Path $OutDir "klang_manifest.csv")).FullName
+PS H:\kdna_opencl_with_inspector_krun> $MatrixCsv = (Get-Item (Join-Path $OutDir "klang_upos_w2_triad.csv")).FullName
+PS H:\kdna_opencl_with_inspector_krun> $NullCsv = (Join-Path (Get-Item $OutDir).FullName "klang_upos_w2_triad_null.csv")
+
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> $Rows = @(
+>>   "name,symbols,grammar",
+>>   "de,$((Get-Item "$OutDir\de_upos_w2_kdna.u64").FullName),$((Get-Item "$OutDir\de_upos_w2_self.kgram").FullName)",
+>>   "en,$((Get-Item "$OutDir\en_upos_w2_kdna.u64").FullName),$((Get-Item "$OutDir\en_upos_w2_self.kgram").FullName)",
+>>   "ar,$((Get-Item "$OutDir\ar_upos_w2_kdna.u64").FullName),$((Get-Item "$OutDir\ar_upos_w2_self.kgram").FullName)"
+>> )
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> $Utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+PS H:\kdna_opencl_with_inspector_krun> [System.IO.File]::WriteAllLines($Manifest, $Rows, $Utf8NoBom)
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> Get-Content $Manifest
+name,symbols,grammar
+de,H:\kdna_opencl_with_inspector_krun\LangTriadOut\upos_w2\de_upos_w2_kdna.u64,H:\kdna_opencl_with_inspector_krun\LangTriadOut\upos_w2\de_upos_w2_self.kgram
+en,H:\kdna_opencl_with_inspector_krun\LangTriadOut\upos_w2\en_upos_w2_kdna.u64,H:\kdna_opencl_with_inspector_krun\LangTriadOut\upos_w2\en_upos_w2_self.kgram
+ar,H:\kdna_opencl_with_inspector_krun\LangTriadOut\upos_w2\ar_upos_w2_kdna.u64,H:\kdna_opencl_with_inspector_krun\LangTriadOut\upos_w2\ar_upos_w2_self.kgram
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> .\build_vs\Release\kdna_field_null_matrix.exe `
+>>   --manifest $Manifest `
+>>   --out $NullCsv `
+>>   --mode all `
+>>   --sample-per-cell $NullSamples `
+>>   --train $Train `
+>>   --seed $Seed `
+>>   --block-size 4096 `
+>>   --rotation-offset 4096
+kdna_field_null_matrix: row=de n=249964
+kdna_field_null_matrix: row=en n=192034
+kdna_field_null_matrix: row=ar n=217806
+kdna_field_null_matrix: wrote H:\kdna_opencl_with_inspector_krun\LangTriadOut\upos_w2\klang_upos_w2_triad_null.csv entries=3 modes=all sample_per_cell=200000 train=0.69999999999999996
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> Test-Path $NullCsv
+True
+PS H:\kdna_opencl_with_inspector_krun> Get-Content $NullCsv -TotalCount 20
+mode,row,col,samples,null_kgram_accuracy,null_surprise,seed,train,block_size,rotation_offset
+symbol_shuffle,de,de,74989,0.23906172905359452,0.76093827094640543,0x4b4c414e47545249,0.69999999999999996,4096,4096
+symbol_shuffle,de,en,74989,0.28958913974049527,0.71041086025950473,0x4b4c414e47545249,0.69999999999999996,4096,4096
+symbol_shuffle,de,ar,74989,0.12411153635866594,0.8758884636413341,0x4b4c414e47545249,0.69999999999999996,4096,4096
+rotation,de,de,74989,0.23780821187107443,0.76219178812892552,0x4b4c414e1500131d,0.69999999999999996,4096,4096
+rotation,de,en,74989,0.29221619170811719,0.70778380829188281,0x4b4c414e1500131d,0.69999999999999996,4096,4096
+rotation,de,ar,74989,0.12236461347664324,0.87763538652335682,0x4b4c414e1500131d,0.69999999999999996,4096,4096
+block_boundary,de,de,74989,0.2532771473149395,0.74672285268506045,0x4b4c414e05181d0a,0.69999999999999996,4096,4096
+block_boundary,de,en,74989,0.26001146834869115,0.73998853165130885,0x4b4c414e05181d0a,0.69999999999999996,4096,4096
+block_boundary,de,ar,74989,0.11061622371281121,0.88938377628718879,0x4b4c414e05181d0a,0.69999999999999996,4096,4096
+symbol_shuffle,en,de,57610,0.18226002430133659,0.81773997569866341,0x4b4c414e47545249,0.69999999999999996,4096,4096
+symbol_shuffle,en,en,57610,0.23596597812879708,0.76403402187120295,0x4b4c414e47545249,0.69999999999999996,4096,4096
+symbol_shuffle,en,ar,57610,0.12942197535150149,0.87057802464849854,0x4b4c414e47545249,0.69999999999999996,4096,4096
+rotation,en,de,57610,0.1783370942544697,0.82166290574553025,0x4b4c414e1500131d,0.69999999999999996,4096,4096
+rotation,en,en,57610,0.23252907481340046,0.76747092518659954,0x4b4c414e1500131d,0.69999999999999996,4096,4096
+rotation,en,ar,57610,0.12855407047387607,0.87144592952612387,0x4b4c414e1500131d,0.69999999999999996,4096,4096
+block_boundary,en,de,57610,0.16108314528727652,0.83891685471272348,0x4b4c414e05181d0a,0.69999999999999996,4096,4096
+block_boundary,en,en,57610,0.18920326332233986,0.81079673667766017,0x4b4c414e05181d0a,0.69999999999999996,4096,4096
+block_boundary,en,ar,57610,0.10663079326505814,0.89336920673494191,0x4b4c414e05181d0a,0.69999999999999996,4096,4096
+symbol_shuffle,ar,de,65341,0.20486371497222264,0.79513628502777733,0x4b4c414e47545249,0.69999999999999996,4096,4096
+PS H:\kdna_opencl_with_inspector_krun> .\scripts\klang_report_v1_2.ps1 `
+>>   -OutDir $OutDir `
+>>   -MatrixCsv $MatrixCsv `
+>>   -NullCsv $NullCsv `
+>>   -ReportDir (Join-Path $OutDir "ReportV12") `
+>>   -Title "KLANG_REPORT v1.2 - DE/EN/AR UPOS w2"
+KLANG v1.2 report written:
+
+  .\LangTriadOut\upos_w2\ReportV12\KLANG_REPORT_V1_2.html
+  .\LangTriadOut\upos_w2\ReportV12\tables\observed_vs_null.csv
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> Get-Content .\LangTriadOut\upos_w2\ReportV12\tables\observed_vs_null.csv
+"row","col","class","observed_accuracy","baseline_accuracy","lift","surprise_rate","out_of_grammar","grammar_edges","avg_null_accuracy","observed_minus_null","null_modes"
+"de","de","self","0,996612836549361","0,0902665724306232","0,906346264118737","0,00338716345063943","254","3039","0,243382362746536","0,753230473802824","symbol_shuffle|rotation|block_boundary"
+"de","en","cross","0,980877195321981","0,0902665724306232","0,890610622891357","0,0191228046780194","1434","4066","0,280605599932435","0,700271595389546","symbol_shuffle|rotation|block_boundary"
+"de","ar","cross","0,714158076517889","0,0902665724306232","0,623891504087266","0,285841923482111","21435","2556","0,119030791182707","0,595127285335183","symbol_shuffle|rotation|block_boundary"
+"en","de","cross","0,938135740322861","0,0491581322687034","0,888977608054157","0,0618642596771394","3564","3039","0,173893421281028","0,764242319041833","symbol_shuffle|rotation|block_boundary"
+"en","en","self","0,989533067175838","0,0491581322687034","0,940374934907134","0,0104669328241625","603","4066","0,219232772088179","0,770300295087658","symbol_shuffle|rotation|block_boundary"
+"en","ar","cross","0,769866342648846","0,0491581322687034","0,720708210380142","0,230133657351154","13258","2556","0,121535613030145","0,6483307296187","symbol_shuffle|rotation|block_boundary"
+"ar","de","cross","0,868688878345908","0,121975482468894","0,746713395877014","0,131311121654092","8580","3039","0,221407691954516","0,647281186391393","symbol_shuffle|rotation|block_boundary"
+"ar","en","cross","0,899175096799865","0,121975482468894","0,777199614330971","0,100824903200135","6588","4066","0,251195012830127","0,647980083969738","symbol_shuffle|rotation|block_boundary"
+"ar","ar","self","0,994842441958342","0,121975482468894","0,872866959489448","0,00515755804165838","337","2556","0,350214005499355","0,644628436458987","symbol_shuffle|rotation|block_boundary"
+PS H:\kdna_opencl_with_inspector_krun> Start-Process .\LangTriadOut\upos_w2\ReportV12\KLANG_REPORT_V1_2.html
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> Get-Content .\LangTriadOut\upos_w2\ReportV12\tables\observed_vs_null.csv
+"row","col","class","observed_accuracy","baseline_accuracy","lift","surprise_rate","out_of_grammar","grammar_edges","avg_null_accuracy","observed_minus_null","null_modes"
+"de","de","self","0,996612836549361","0,0902665724306232","0,906346264118737","0,00338716345063943","254","3039","0,243382362746536","0,753230473802824","symbol_shuffle|rotation|block_boundary"
+"de","en","cross","0,980877195321981","0,0902665724306232","0,890610622891357","0,0191228046780194","1434","4066","0,280605599932435","0,700271595389546","symbol_shuffle|rotation|block_boundary"
+"de","ar","cross","0,714158076517889","0,0902665724306232","0,623891504087266","0,285841923482111","21435","2556","0,119030791182707","0,595127285335183","symbol_shuffle|rotation|block_boundary"
+"en","de","cross","0,938135740322861","0,0491581322687034","0,888977608054157","0,0618642596771394","3564","3039","0,173893421281028","0,764242319041833","symbol_shuffle|rotation|block_boundary"
+"en","en","self","0,989533067175838","0,0491581322687034","0,940374934907134","0,0104669328241625","603","4066","0,219232772088179","0,770300295087658","symbol_shuffle|rotation|block_boundary"
+"en","ar","cross","0,769866342648846","0,0491581322687034","0,720708210380142","0,230133657351154","13258","2556","0,121535613030145","0,6483307296187","symbol_shuffle|rotation|block_boundary"
+"ar","de","cross","0,868688878345908","0,121975482468894","0,746713395877014","0,131311121654092","8580","3039","0,221407691954516","0,647281186391393","symbol_shuffle|rotation|block_boundary"
+"ar","en","cross","0,899175096799865","0,121975482468894","0,777199614330971","0,100824903200135","6588","4066","0,251195012830127","0,647980083969738","symbol_shuffle|rotation|block_boundary"
+"ar","ar","self","0,994842441958342","0,121975482468894","0,872866959489448","0,00515755804165838","337","2556","0,350214005499355","0,644628436458987","symbol_shuffle|rotation|block_boundary"
+PS H:\kdna_opencl_with_inspector_krun> Get-Content .\LangTriadOut\upos_w2\ReportV12\tables\null_summary.csv
+"mode","cells","avg_null_accuracy","max_null_accuracy","avg_null_surprise","samples_per_cell"
+"symbol_shuffle","9","0,222019890236207","0,356927503405213","0,777980109763793","74989"
+"rotation","9","0,22200457537354","0,356713242833749","0,77799542462646","74989"
+"block_boundary","9","0,216141291238595","0,337001270259102","0,783858708761405","74989"
+PS H:\kdna_opencl_with_inspector_krun> Get-Content .\LangTriadOut\upos_w2\ReportV12\tables\asymmetry.csv
+"pair","forward","reverse","forward_accuracy","reverse_accuracy","delta_accuracy","forward_lift","reverse_lift","delta_lift","forward_surprise","reverse_surprise"
+"de<->en","de->en","en->de","0,980877195321981","0,938135740322861","0,04274145499912","0,890610622891357","0,888977608054157","0,00163301483720013","0,0191228046780194","0,0618642596771394"
+"ar<->de","ar->de","de->ar","0,868688878345908","0,714158076517889","0,154530801828019","0,746713395877014","0,623891504087266","0,122821891789748","0,131311121654092","0,285841923482111"
+"ar<->en","ar->en","en->ar","0,899175096799865","0,769866342648846","0,12930875415102","0,777199614330971","0,720708210380142","0,056491403950829","0,100824903200135","0,230133657351154"
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> Write-Host "=== First bytes: must NOT start with EF BB BF ==="
+=== First bytes: must NOT start with EF BB BF ===
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> $bytes = [System.IO.File]::ReadAllBytes((Resolve-Path $Manifest))
+PS H:\kdna_opencl_with_inspector_krun> $bytes[0..15] | ForEach-Object { "{0:X2}" -f $_ }
+6E
+61
+6D
+65
+2C
+73
+79
+6D
+62
+6F
+6C
+73
+2C
+67
+72
+61
+PS H:\kdna_opencl_with_inspector_krun> Remove-Item -Force $NullCsv -ErrorAction SilentlyContinue
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> .\build_vs\Release\kdna_field_null_matrix.exe `
+>>   --manifest $Manifest `
+>>   --out $NullCsv `
+>>   --mode all `
+>>   --sample-per-cell $NullSamples `
+>>   --train $Train `
+>>   --seed $Seed `
+>>   --block-size 4096 `
+>>   --rotation-offset 4096
+kdna_field_null_matrix: row=de n=249964
+kdna_field_null_matrix: row=en n=192034
+kdna_field_null_matrix: row=ar n=217806
+kdna_field_null_matrix: wrote .\LangTriadOut\upos_w2\klang_upos_w2_triad_null.csv entries=3 modes=all sample_per_cell=200000 train=0.69999999999999996
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> if (-not (Test-Path $NullCsv)) {
+>>   throw "NullCsv wurde nicht erzeugt: $NullCsv"
+>> }
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> Write-Host "=== Null CSV ==="
+=== Null CSV ===
+PS H:\kdna_opencl_with_inspector_krun> Get-Content $NullCsv -TotalCount 30
+mode,row,col,samples,null_kgram_accuracy,null_surprise,seed,train,block_size,rotation_offset
+symbol_shuffle,de,de,74989,0.23906172905359452,0.76093827094640543,0x4b4c414e47545249,0.69999999999999996,4096,4096
+symbol_shuffle,de,en,74989,0.28958913974049527,0.71041086025950473,0x4b4c414e47545249,0.69999999999999996,4096,4096
+symbol_shuffle,de,ar,74989,0.12411153635866594,0.8758884636413341,0x4b4c414e47545249,0.69999999999999996,4096,4096
+rotation,de,de,74989,0.23780821187107443,0.76219178812892552,0x4b4c414e1500131d,0.69999999999999996,4096,4096
+rotation,de,en,74989,0.29221619170811719,0.70778380829188281,0x4b4c414e1500131d,0.69999999999999996,4096,4096
+rotation,de,ar,74989,0.12236461347664324,0.87763538652335682,0x4b4c414e1500131d,0.69999999999999996,4096,4096
+block_boundary,de,de,74989,0.2532771473149395,0.74672285268506045,0x4b4c414e05181d0a,0.69999999999999996,4096,4096
+block_boundary,de,en,74989,0.26001146834869115,0.73998853165130885,0x4b4c414e05181d0a,0.69999999999999996,4096,4096
+block_boundary,de,ar,74989,0.11061622371281121,0.88938377628718879,0x4b4c414e05181d0a,0.69999999999999996,4096,4096
+symbol_shuffle,en,de,57610,0.18226002430133659,0.81773997569866341,0x4b4c414e47545249,0.69999999999999996,4096,4096
+symbol_shuffle,en,en,57610,0.23596597812879708,0.76403402187120295,0x4b4c414e47545249,0.69999999999999996,4096,4096
+symbol_shuffle,en,ar,57610,0.12942197535150149,0.87057802464849854,0x4b4c414e47545249,0.69999999999999996,4096,4096
+rotation,en,de,57610,0.1783370942544697,0.82166290574553025,0x4b4c414e1500131d,0.69999999999999996,4096,4096
+rotation,en,en,57610,0.23252907481340046,0.76747092518659954,0x4b4c414e1500131d,0.69999999999999996,4096,4096
+rotation,en,ar,57610,0.12855407047387607,0.87144592952612387,0x4b4c414e1500131d,0.69999999999999996,4096,4096
+block_boundary,en,de,57610,0.16108314528727652,0.83891685471272348,0x4b4c414e05181d0a,0.69999999999999996,4096,4096
+block_boundary,en,en,57610,0.18920326332233986,0.81079673667766017,0x4b4c414e05181d0a,0.69999999999999996,4096,4096
+block_boundary,en,ar,57610,0.10663079326505814,0.89336920673494191,0x4b4c414e05181d0a,0.69999999999999996,4096,4096
+symbol_shuffle,ar,de,65341,0.20486371497222264,0.79513628502777733,0x4b4c414e47545249,0.69999999999999996,4096,4096
+symbol_shuffle,ar,en,65341,0.23597741081403714,0.76402258918596289,0x4b4c414e47545249,0.69999999999999996,4096,4096
+symbol_shuffle,ar,ar,65341,0.35692750340521268,0.64307249659478738,0x4b4c414e47545249,0.69999999999999996,4096,4096
+rotation,ar,de,65341,0.20960805619748704,0.79039194380251299,0x4b4c414e1500131d,0.69999999999999996,4096,4096
+rotation,ar,en,65341,0.23991062273304664,0.76008937726695336,0x4b4c414e1500131d,0.69999999999999996,4096,4096
+rotation,ar,ar,65341,0.35671324283374911,0.64328675716625083,0x4b4c414e1500131d,0.69999999999999996,4096,4096
+block_boundary,ar,de,65341,0.24975130469383694,0.75024869530616312,0x4b4c414e05181d0a,0.69999999999999996,4096,4096
+block_boundary,ar,en,65341,0.27769700494329747,0.72230299505670259,0x4b4c414e05181d0a,0.69999999999999996,4096,4096
+block_boundary,ar,ar,65341,0.33700127025910226,0.66299872974089769,0x4b4c414e05181d0a,0.69999999999999996,4096,4096
+PS H:\kdna_opencl_with_inspector_krun> .\scripts\klang_report_v1_2.ps1 `
+>>   -OutDir $OutDir `
+>>   -MatrixCsv $MatrixCsv `
+>>   -NullCsv $NullCsvAbs `
+>>   -ReportDir (Join-Path $OutDir "ReportV12") `
+>>   -Title "KLANG_REPORT v1.2 - DE/EN/AR UPOS w2"
+KLANG v1.2 report written:
+
+  .\LangTriadOut\upos_w2\ReportV12\KLANG_REPORT_V1_2.html
+  .\LangTriadOut\upos_w2\ReportV12\tables\observed_vs_null.csv
+PS H:\kdna_opencl_with_inspector_krun>
+PS H:\kdna_opencl_with_inspector_krun> Get-Content .\LangTriadOut\upos_w2\ReportV12\tables\observed_vs_null.csv
+"row","col","class","observed_accuracy","baseline_accuracy","lift","surprise_rate","out_of_grammar","grammar_edges","avg_null_accuracy","observed_minus_null","null_modes"
+"de","de","self","0,996612836549361","0,0902665724306232","0,906346264118737","0,00338716345063943","254","3039","0,243382362746536","0,753230473802824","symbol_shuffle|rotation|block_boundary"
+"de","en","cross","0,980877195321981","0,0902665724306232","0,890610622891357","0,0191228046780194","1434","4066","0,280605599932435","0,700271595389546","symbol_shuffle|rotation|block_boundary"
+"de","ar","cross","0,714158076517889","0,0902665724306232","0,623891504087266","0,285841923482111","21435","2556","0,119030791182707","0,595127285335183","symbol_shuffle|rotation|block_boundary"
+"en","de","cross","0,938135740322861","0,0491581322687034","0,888977608054157","0,0618642596771394","3564","3039","0,173893421281028","0,764242319041833","symbol_shuffle|rotation|block_boundary"
+"en","en","self","0,989533067175838","0,0491581322687034","0,940374934907134","0,0104669328241625","603","4066","0,219232772088179","0,770300295087658","symbol_shuffle|rotation|block_boundary"
+"en","ar","cross","0,769866342648846","0,0491581322687034","0,720708210380142","0,230133657351154","13258","2556","0,121535613030145","0,6483307296187","symbol_shuffle|rotation|block_boundary"
+"ar","de","cross","0,868688878345908","0,121975482468894","0,746713395877014","0,131311121654092","8580","3039","0,221407691954516","0,647281186391393","symbol_shuffle|rotation|block_boundary"
+"ar","en","cross","0,899175096799865","0,121975482468894","0,777199614330971","0,100824903200135","6588","4066","0,251195012830127","0,647980083969738","symbol_shuffle|rotation|block_boundary"
+"ar","ar","self","0,994842441958342","0,121975482468894","0,872866959489448","0,00515755804165838","337","2556","0,350214005499355","0,644628436458987","symbol_shuffle|rotation|block_boundary"
+PS H:\kdna_opencl_with_inspector_krun>
+
