@@ -1,4 +1,5 @@
 # KALYX
+<img width="2752" height="1536" alt="image" src="https://github.com/user-attachments/assets/fdb370d3-0a52-466f-a155-d0ec537968b8" />
 
 **KALYX** is a low-level KDNA/KFIELD research substrate for turning ordered data into testable transition grammars.  
 It was created by **Ralf Krümmel** and is released under the **Apache License 2.0**.
