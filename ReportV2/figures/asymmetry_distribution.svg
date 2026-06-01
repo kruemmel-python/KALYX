@@ -1,0 +1,41 @@
+﻿<svg xmlns='http://www.w3.org/2000/svg' width='920' height='360' viewBox='0 0 920 360'>
+<rect width='100%' height='100%' fill='white'/>
+<text x='20' y='28' font-size='18' font-family='Segoe UI, Arial'>Asymmetrie-Verteilung</text>
+<line x1='60' y1='312' x2='880' y2='312' stroke='#333'/>
+<line x1='60' y1='62' x2='60' y2='312' stroke='#333'/>
+<rect x='60' y='156.7' width='24.63' height='155.3' fill='#2b579a'><title>41</title></rect>
+<rect x='85.63' y='62' width='24.63' height='250' fill='#2b579a'><title>66</title></rect>
+<rect x='111.25' y='190.79' width='24.63' height='121.21' fill='#2b579a'><title>32</title></rect>
+<rect x='136.88' y='179.42' width='24.63' height='132.58' fill='#2b579a'><title>35</title></rect>
+<rect x='162.5' y='221.09' width='24.63' height='90.91' fill='#2b579a'><title>24</title></rect>
+<rect x='188.13' y='258.97' width='24.63' height='53.03' fill='#2b579a'><title>14</title></rect>
+<rect x='213.75' y='300.64' width='24.63' height='11.36' fill='#2b579a'><title>3</title></rect>
+<rect x='239.38' y='300.64' width='24.63' height='11.36' fill='#2b579a'><title>3</title></rect>
+<rect x='265' y='300.64' width='24.63' height='11.36' fill='#2b579a'><title>3</title></rect>
+<rect x='290.63' y='293.06' width='24.63' height='18.94' fill='#2b579a'><title>5</title></rect>
+<rect x='316.25' y='289.27' width='24.63' height='22.73' fill='#2b579a'><title>6</title></rect>
+<rect x='341.88' y='300.64' width='24.63' height='11.36' fill='#2b579a'><title>3</title></rect>
+<rect x='367.5' y='296.85' width='24.63' height='15.15' fill='#2b579a'><title>4</title></rect>
+<rect x='393.13' y='300.64' width='24.63' height='11.36' fill='#2b579a'><title>3</title></rect>
+<rect x='418.75' y='300.64' width='24.63' height='11.36' fill='#2b579a'><title>3</title></rect>
+<rect x='444.38' y='300.64' width='24.63' height='11.36' fill='#2b579a'><title>3</title></rect>
+<rect x='470' y='300.64' width='24.63' height='11.36' fill='#2b579a'><title>3</title></rect>
+<rect x='495.63' y='312' width='24.63' height='0' fill='#2b579a'><title>0</title></rect>
+<rect x='521.25' y='304.42' width='24.63' height='7.58' fill='#2b579a'><title>2</title></rect>
+<rect x='546.88' y='312' width='24.63' height='0' fill='#2b579a'><title>0</title></rect>
+<rect x='572.5' y='312' width='24.63' height='0' fill='#2b579a'><title>0</title></rect>
+<rect x='598.13' y='304.42' width='24.63' height='7.58' fill='#2b579a'><title>2</title></rect>
+<rect x='623.75' y='304.42' width='24.63' height='7.58' fill='#2b579a'><title>2</title></rect>
+<rect x='649.38' y='308.21' width='24.63' height='3.79' fill='#2b579a'><title>1</title></rect>
+<rect x='675' y='304.42' width='24.63' height='7.58' fill='#2b579a'><title>2</title></rect>
+<rect x='700.63' y='289.27' width='24.63' height='22.73' fill='#2b579a'><title>6</title></rect>
+<rect x='726.25' y='308.21' width='24.63' height='3.79' fill='#2b579a'><title>1</title></rect>
+<rect x='751.88' y='308.21' width='24.63' height='3.79' fill='#2b579a'><title>1</title></rect>
+<rect x='777.5' y='304.42' width='24.63' height='7.58' fill='#2b579a'><title>2</title></rect>
+<rect x='803.13' y='308.21' width='24.63' height='3.79' fill='#2b579a'><title>1</title></rect>
+<rect x='828.75' y='304.42' width='24.63' height='7.58' fill='#2b579a'><title>2</title></rect>
+<rect x='854.38' y='300.64' width='24.63' height='11.36' fill='#2b579a'><title>3</title></rect>
+<text x='60' y='348' font-size='12' font-family='Segoe UI, Arial'>0.000024</text>
+<text x='790' y='348' font-size='12' font-family='Segoe UI, Arial'>0.034385</text>
+</svg>
+

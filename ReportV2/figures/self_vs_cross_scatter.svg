@@ -1,0 +1,57 @@
+﻿<svg xmlns='http://www.w3.org/2000/svg' width='920' height='420' viewBox='0 0 920 420'>
+<rect width='100%' height='100%' fill='white'/>
+<text x='20' y='28' font-size='18' font-family='Segoe UI, Arial'>Self-Lift gegen mittleren Cross-Lift</text>
+<line x1='70' y1='362' x2='850' y2='362' stroke='#333'/>
+<line x1='70' y1='62' x2='70' y2='362' stroke='#333'/>
+<circle cx='751.54' cy='74.28' r='5' fill='#d83b01'><title>chr2: self=0.997544520650309, cross=0.992426028345238</title></circle>
+<text x='758.538368488094' y='78.2773967484549' font-size='10' font-family='Segoe UI, Arial'>chr2</text>
+<circle cx='750.21' cy='74.71' r='5' fill='#d83b01'><title>chr1: self=0.997458348841509, cross=0.992323620495094</title></circle>
+<text x='757.207066436223' y='78.7082557924548' font-size='10' font-family='Segoe UI, Arial'>chr1</text>
+<circle cx='759.17' cy='76.28' r='5' fill='#d83b01'><title>chr3: self=0.997144131825599, cross=0.993012712931652</title></circle>
+<text x='766.165268111477' y='80.2793408720046' font-size='10' font-family='Segoe UI, Arial'>chr3</text>
+<circle cx='761.01' cy='77.45' r='5' fill='#d83b01'><title>chr4: self=0.99691043010556, cross=0.993154762620116</title></circle>
+<text x='768.011914061509' y='81.4478494721996' font-size='10' font-family='Segoe UI, Arial'>chr4</text>
+<circle cx='749.88' cy='80.32' r='5' fill='#d83b01'><title>chr6: self=0.996335374086237, cross=0.992298668049005</title></circle>
+<text x='756.882684637066' y='84.3231295688149' font-size='10' font-family='Segoe UI, Arial'>chr6</text>
+<circle cx='746.22' cy='81.15' r='5' fill='#d83b01'><title>chr7: self=0.99617076219886, cross=0.992017283701039</title></circle>
+<text x='753.224688113508' y='85.1461890056996' font-size='10' font-family='Segoe UI, Arial'>chr7</text>
+<circle cx='746.98' cy='81.87' r='5' fill='#d83b01'><title>chr5: self=0.996025870139807, cross=0.992075425697108</title></circle>
+<text x='753.980534062405' y='85.8706493009645' font-size='10' font-family='Segoe UI, Arial'>chr5</text>
+<circle cx='758.52' cy='82.44' r='5' fill='#d83b01'><title>chrX: self=0.995912090887091, cross=0.99296338384067</title></circle>
+<text x='765.52398992871' y='86.4395455645448' font-size='10' font-family='Segoe UI, Arial'>chrX</text>
+<circle cx='749.44' cy='82.53' r='5' fill='#d83b01'><title>chr8: self=0.995893359560129, cross=0.992264430083373</title></circle>
+<text x='756.437591083849' y='86.5332021993545' font-size='10' font-family='Segoe UI, Arial'>chr8</text>
+<circle cx='747.95' cy='83.21' r='5' fill='#d83b01'><title>chr11: self=0.995758355106101, cross=0.992149989257026</title></circle>
+<text x='754.949860341339' y='87.2082244694947' font-size='10' font-family='Segoe UI, Arial'>chr11</text>
+<circle cx='731.46' cy='88.15' r='5' fill='#d83b01'><title>chr10: self=0.9947694434141, cross=0.990881302787217</title></circle>
+<text x='738.456936233821' y='92.1527829294997' font-size='10' font-family='Segoe UI, Arial'>chr10</text>
+<circle cx='738.37' cy='90.15' r='5' fill='#d83b01'><title>chr12: self=0.994370852122822, cross=0.991413427482831</title></circle>
+<text x='745.374557276804' y='94.14573938589' font-size='10' font-family='Segoe UI, Arial'>chr12</text>
+<circle cx='730.17' cy='96.13' r='5' fill='#d83b01'><title>chr9: self=0.993173844065087, cross=0.990782282574442</title></circle>
+<text x='737.169673467747' y='100.130779674565' font-size='10' font-family='Segoe UI, Arial'>chr9</text>
+<circle cx='746.75' cy='99.85' r='5' fill='#d83b01'><title>chr13: self=0.99243010049178, cross=0.992057413101369</title></circle>
+<text x='753.746370317797' y='103.849497541099' font-size='10' font-family='Segoe UI, Arial'>chr13</text>
+<circle cx='738.31' cy='102.22' r='5' fill='#d83b01'><title>chr15: self=0.991956032058356, cross=0.991408122446312</title></circle>
+<text x='745.305591802057' y='106.21983970822' font-size='10' font-family='Segoe UI, Arial'>chr15</text>
+<circle cx='710.02' cy='105.38' r='5' fill='#d83b01'><title>chr17: self=0.991323110218268, cross=0.989232552774205</title></circle>
+<text x='717.023186064665' y='109.38444890866' font-size='10' font-family='Segoe UI, Arial'>chr17</text>
+<circle cx='709.88' cy='106.25' r='5' fill='#d83b01'><title>chr16: self=0.991149549289356, cross=0.989221442306658</title></circle>
+<text x='716.878749986555' y='110.25225355322' font-size='10' font-family='Segoe UI, Arial'>chr16</text>
+<circle cx='733.92' cy='106.59' r='5' fill='#d83b01'><title>chr14: self=0.991081229175819, cross=0.991070600576721</title></circle>
+<text x='740.917807497374' y='110.593854120905' font-size='10' font-family='Segoe UI, Arial'>chr14</text>
+<circle cx='745.85' cy='107.5' r='5' fill='#d83b01'><title>chr18: self=0.990900399805882, cross=0.991988077446868</title></circle>
+<text x='752.845006809285' y='111.49800097059' font-size='10' font-family='Segoe UI, Arial'>chr18</text>
+<circle cx='699.68' cy='126.37' r='5' fill='#d83b01'><title>chr19: self=0.987126480654928, cross=0.988437023966495</title></circle>
+<text x='706.681311564436' y='130.36759672536' font-size='10' font-family='Segoe UI, Arial'>chr19</text>
+<circle cx='711.98' cy='126.53' r='5' fill='#d83b01'><title>chr20: self=0.987094792251172, cross=0.989382745409976</title></circle>
+<text x='718.975690329688' y='130.52603874414' font-size='10' font-family='Segoe UI, Arial'>chr20</text>
+<circle cx='692.94' cy='171.35' r='5' fill='#d83b01'><title>chr22: self=0.978129282481013, cross=0.987918122452144</title></circle>
+<text x='699.935591877873' y='175.353587594934' font-size='10' font-family='Segoe UI, Arial'>chr22</text>
+<circle cx='765.83' cy='178.74' r='5' fill='#d83b01'><title>chrY: self=0.976651664612213, cross=0.9935256948041</title></circle>
+<text x='772.834032453301' y='182.741676938935' font-size='10' font-family='Segoe UI, Arial'>chrY</text>
+<circle cx='719.7' cy='210.57' r='5' fill='#d83b01'><title>chr21: self=0.970286178124113, cross=0.989977248809777</title></circle>
+<text x='726.704234527102' y='214.569109379435' font-size='10' font-family='Segoe UI, Arial'>chr21</text>
+<text x='70' y='402' font-size='12' font-family='Segoe UI, Arial'>avg outgoing cross lift</text>
+<text x='12' y='77' font-size='12' font-family='Segoe UI, Arial'>self lift</text>
+</svg>
+

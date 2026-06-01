@@ -1,0 +1,6 @@
+﻿"control","status","meaning"
+"label_permutation","diagnostic_only","Samples existing matrix values; not a sequence null model."
+"symbol_shuffle","not_computed","Requires shuffled KDNA streams and KGRAM rebuild."
+"block_shuffle","not_computed","Requires block-level shuffled KDNA streams and KGRAM rebuild."
+"train_test_rotation","not_computed","Requires alternate KGRAM train window."
+"k_sweep","not_computed","Requires k=12/k=16/k=20 FASTA-symbol pipeline."

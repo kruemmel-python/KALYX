@@ -1,0 +1,34 @@
+﻿<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><title>KGENOME Enterprise Report v2</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:32px;line-height:1.45;color:#111}
+h1,h2{letter-spacing:-0.02em}.grid{display:grid;grid-template-columns:repeat(4,minmax(160px,1fr));gap:12px}.metric{border:1px solid #ddd;border-radius:10px;padding:12px;background:#fff}.metric b{display:block;font-size:22px}
+.card{border:1px solid #ddd;border-radius:12px;padding:16px;margin:16px 0;background:#fafafa}
+object{max-width:100%;border:1px solid #ddd;border-radius:8px;background:white;margin-bottom:18px}
+a{color:#0645ad}
+</style></head><body>
+<h1>KGENOME Enterprise Report v2</h1>
+<p>Quelle: vorhandene KGLIB/KGENOME-Artefakte. Keine FASTA-, KMAP-, KGRAM- oder Matrix-Neuberechnung.</p>
+<div class="grid">
+<div class="metric"><span>Matrixzellen</span><b>576</b></div>
+<div class="metric"><span>Self-Lift Ø</span><b>0.991483175090255</b></div>
+<div class="metric"><span>Cross-Lift Ø</span><b>0.991332598414977</b></div>
+<div class="metric"><span>Cross-Zellen</span><b>552</b></div>
+</div>
+<div class="card"><h2>Stärkste Kopplung</h2><p><b>chr4 → chr2</b>, lift=0.997719291154194, accuracy=0.998843580783331, surprise=0.001156419216669</p></div>
+<div class="card"><h2>Schwächste Kopplung</h2><p><b>chr22 → chrY</b>, lift=0.95116123413596, accuracy=0.952798062806586, surprise=0.047201937193414</p></div>
+<div class="card"><h2>Kontrollstatus</h2><p>Dieser v2-Report enthält nur Matrixdiagnostik. Label-Sampling ist kein echtes Sequenz-Nullmodell. Siehe <a href="controls/CONTROL_PROTOCOL.md">CONTROL_PROTOCOL.md</a>.</p></div>
+<h2>Diagnostik-Abbildungen</h2>
+<object data="figures/cross_lift_distribution.svg" type="image/svg+xml" width="940"></object>
+<object data="figures/self_lift_distribution.svg" type="image/svg+xml" width="940"></object>
+<object data="figures/asymmetry_distribution.svg" type="image/svg+xml" width="940"></object>
+<object data="figures/self_vs_cross_scatter.svg" type="image/svg+xml" width="940"></object>
+<h2>Tabellen</h2><ul>
+<li><a href="tables/global_metrics.csv">Global Metrics</a></li>
+<li><a href="tables/self_cross_profile.csv">Self-vs-Cross Profile</a></li>
+<li><a href="tables/grammar_carriers_v2.csv">Grammatik-Träger v2</a></li>
+<li><a href="tables/chromosome_receivers_v2.csv">Empfängerprofile v2</a></li>
+<li><a href="tables/asymmetry_v2.csv">Asymmetrien v2</a></li>
+<li><a href="controls/control_summary.csv">Kontrollübersicht</a></li>
+</ul>
+</body></html>

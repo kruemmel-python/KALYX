@@ -1,0 +1,62 @@
+﻿{
+    "generated_at":  "2026-05-31T21:23:28.8242780+02:00",
+    "version":  "KGENOME_REPORT_V2_0_4",
+    "input":  {
+                  "dir":  ".\\GenomeOutFull",
+                  "library_json":  ".\\GenomeOutFull\\human_kdna_library.json",
+                  "library_csv":  ".\\GenomeOutFull\\human_kdna_library.csv",
+                  "matrix_csv":  ".\\GenomeOutFull\\human_chr1_22_XY_full_k16.csv"
+              },
+    "matrix":  {
+                   "cells":  576,
+                   "self_cells":  24,
+                   "cross_cells":  552,
+                   "avg_self_lift":  "0.991483175090255",
+                   "avg_cross_lift":  "0.991332598414977",
+                   "avg_self_accuracy":  "0.992731581855858",
+                   "avg_cross_accuracy":  "0.99258100518058"
+               },
+    "best":  {
+                 "row":  "chr4",
+                 "col":  "chr2",
+                 "lift":  "0.997719291154194",
+                 "accuracy":  "0.998843580783331",
+                 "surprise":  "0.001156419216669"
+             },
+    "weakest":  {
+                    "row":  "chr22",
+                    "col":  "chrY",
+                    "lift":  "0.95116123413596",
+                    "accuracy":  "0.952798062806586",
+                    "surprise":  "0.047201937193414"
+                },
+    "best_carrier":  {
+                         "grammar":  "chr1",
+                         "cross_count":  23,
+                         "avg_cross_lift":  "0.997092056536525",
+                         "avg_cross_accuracy":  "0.998342418514783",
+                         "avg_cross_surprise":  "0.001657581485217",
+                         "min_cross_lift":  "0.995564045589054",
+                         "max_cross_lift":  "0.997685088354663"
+                     },
+    "best_receiver":  {
+                          "chromosome":  "chrY",
+                          "cross_count":  23,
+                          "avg_cross_lift":  "0.9935256948041",
+                          "avg_cross_accuracy":  "0.995067039799865",
+                          "avg_cross_surprise":  "0.004932960200135",
+                          "min_cross_lift":  "0.981703500445721",
+                          "max_cross_lift":  "0.997291730395111"
+                      },
+    "max_asymmetry":  {
+                          "a":  "chr16",
+                          "b":  "chrY",
+                          "lift_a_to_b":  "0.958960728373696",
+                          "lift_b_to_a":  "0.993345488429943",
+                          "delta_lift":  "0.034384760056247",
+                          "acc_a_to_b":  "0.960623531682091",
+                          "acc_b_to_a":  "0.994886833425708",
+                          "delta_acc":  "0.034263301743617"
+                      },
+    "controls":  "diagnostic_only_no_sequence_null_model"
+}

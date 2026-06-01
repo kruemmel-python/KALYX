@@ -1,0 +1,24 @@
+﻿<!doctype html><html lang="de"><head><meta charset="utf-8"><title>KGENOME_REPORT v3</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:32px;line-height:1.45;color:#111}
+.card{border:1px solid #ddd;border-radius:12px;padding:16px;margin:16px 0;background:#fafafa}
+table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:6px 10px}th{background:#eee}
+code{background:#f4f4f4;padding:2px 4px;border-radius:4px}
+</style></head><body>
+<h1>KGENOME_REPORT v3 — echte Nullmodell-Berechnung</h1>
+<p>Keine FASTA/KMAP/KGRAM-Neuberechnung. Es werden vorhandene KDNA-u64-Ströme gegen vorhandene KGRAM01-Grammatiken unter zerstörter Sequenzordnung getestet.</p>
+<div class="card"><b>Sample pro Zelle:</b> 200000<br><b>Train:</b> 0.7<br><b>Block:</b> 4096<br><b>Rotation:</b> 4096</div>
+<h2>Nullmodell-Zusammenfassung</h2>
+<table><tr><th>mode</th><th>cells</th><th>avg observed acc</th><th>avg null acc</th><th>avg delta</th><th>max null acc</th><th>min delta</th></tr><tr><td>symbol_shuffle</td><td>576</td><td>0.992587279209</td><td>0.000230373264</td><td>0.992356905945</td><td>0.00035</td><td>0.952543062807</td></tr>
+<tr><td>rotation</td><td>576</td><td>0.992587279209</td><td>0.000263541667</td><td>0.992323737542</td><td>0.00058</td><td>0.952483062807</td></tr>
+<tr><td>block_boundary</td><td>576</td><td>0.992587279209</td><td>0.000381710069</td><td>0.992205569139</td><td>0.000855</td><td>0.952218062807</td></tr>
+</table>
+<h2>Artefakte</h2>
+<ul>
+<li><a href="controls/null_summary.csv">controls/null_summary.csv</a></li>
+<li><a href="tables/null_joined.csv">tables/null_joined.csv</a></li>
+<li><a href="tables/top_observed_minus_null.csv">tables/top_observed_minus_null.csv</a></li>
+<li><a href="tables/lowest_observed_minus_null.csv">tables/lowest_observed_minus_null.csv</a></li>
+<li><a href="tables/top_null_accuracy.csv">tables/top_null_accuracy.csv</a></li>
+</ul>
+</body></html>

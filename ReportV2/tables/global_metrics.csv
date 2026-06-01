@@ -1,0 +1,2 @@
+﻿"matrix_cells","self_cells","cross_cells","avg_self_lift","avg_cross_lift","delta_self_cross_lift","avg_self_accuracy","avg_cross_accuracy","delta_self_cross_accuracy","avg_self_surprise","avg_cross_surprise","best_pair","best_lift","weakest_pair","weakest_lift","library_rows"
+"576","24","552","0.991483175090255","0.991332598414977","0.000150576675278","0.992731581855858","0.99258100518058","0.000150576675278","0.007268418144142","0.00741899481942","chr4->chr2","0.997719291154194","chr22->chrY","0.95116123413596","24"

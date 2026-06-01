@@ -1,0 +1,66 @@
+﻿{
+    "generated_at":  "2026-05-31T21:23:43.8359566+02:00",
+    "input":  {
+                  "dir":  ".\\GenomeOutFull",
+                  "library_json":  ".\\GenomeOutFull\\human_kdna_library.json",
+                  "library_csv":  ".\\GenomeOutFull\\human_kdna_library.csv",
+                  "matrix_csv":  ".\\GenomeOutFull\\human_chr1_22_XY_full_k16.csv"
+              },
+    "matrix":  {
+                   "cells":  576,
+                   "self_cells":  24,
+                   "cross_cells":  552,
+                   "avg_self_lift":  0.99148317509025474,
+                   "avg_cross_lift":  0.99133259841497634,
+                   "avg_self_accuracy":  0.99273158185585775,
+                   "avg_cross_accuracy":  0.99258100518057946
+               },
+    "best":  {
+                 "row":  "chr4",
+                 "col":  "chr2",
+                 "lift":  0.997719291154194,
+                 "accuracy":  0.99884358078333058,
+                 "surprise":  0.0011564192166694132
+             },
+    "weakest":  {
+                    "row":  "chr22",
+                    "col":  "chrY",
+                    "lift":  0.95116123413596021,
+                    "accuracy":  0.95279806280658619,
+                    "surprise":  0.047201937193413833
+                },
+    "best_carrier":  {
+                         "grammar":  "chr1",
+                         "cross_count":  23,
+                         "avg_cross_lift":  0.997092056537,
+                         "avg_cross_accuracy":  0.998342418515,
+                         "avg_cross_surprise":  0.001657581485,
+                         "min_cross_lift":  0.995564045589,
+                         "max_cross_lift":  0.997685088355
+                     },
+    "best_receiver":  {
+                          "chromosome":  "chrY",
+                          "cross_count":  23,
+                          "avg_cross_lift":  0.993525694804,
+                          "avg_cross_accuracy":  0.9950670398,
+                          "avg_cross_surprise":  0.0049329602,
+                          "min_cross_lift":  0.981703500446,
+                          "max_cross_lift":  0.997291730395
+                      },
+    "max_asymmetry":  {
+                          "a":  "chr16",
+                          "b":  "chrY",
+                          "lift_a_to_b":  0.95896072837369628,
+                          "lift_b_to_a":  0.99334548842994319,
+                          "delta_lift":  0.034384760056,
+                          "acc_a_to_b":  0.96062353168209136,
+                          "acc_b_to_a":  0.994886833425708,
+                          "delta_acc":  0.034263301744
+                      },
+    "outputs":  {
+                    "report_md":  "KGENOME_REPORT.md",
+                    "report_html":  "KGENOME_REPORT.html",
+                    "tables":  "tables",
+                    "figures":  "figures"
+                }
+}

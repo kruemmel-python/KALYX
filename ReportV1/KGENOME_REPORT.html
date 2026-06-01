@@ -1,0 +1,29 @@
+﻿<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><title>KGENOME Enterprise Report</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:32px;line-height:1.45;color:#111}
+h1,h2{letter-spacing:-0.02em}.card{border:1px solid #ddd;border-radius:12px;padding:16px;margin:16px 0;background:#fafafa}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(160px,1fr));gap:12px}.metric{border:1px solid #ddd;border-radius:10px;padding:12px;background:white}.metric b{display:block;font-size:22px}
+a{color:#0645ad} object{max-width:100%;border:1px solid #ddd;border-radius:8px;background:white;margin-bottom:18px}
+</style></head><body>
+<h1>KGENOME Enterprise Report</h1>
+<p>Quelle: vorhandene KGLIB/KGENOME-Artefakte. Keine FASTA-, KMAP-, KGRAM- oder Matrix-Neuberechnung.</p>
+<div class="grid">
+<div class="metric"><span>Matrixzellen</span><b>576</b></div>
+<div class="metric"><span>Self-Lift Ø</span><b>0.991483</b></div>
+<div class="metric"><span>Cross-Lift Ø</span><b>0.991333</b></div>
+<div class="metric"><span>Cross-Zellen</span><b>552</b></div>
+</div>
+<div class="card"><h2>Stärkste Kopplung</h2><p><b>chr4 → chr2</b>, lift=0.997719291154194, accuracy=0.998843580783331, surprise=0.00115641921666941</p></div>
+<div class="card"><h2>Schwächste Kopplung</h2><p><b>chr22 → chrY</b>, lift=0.95116123413596, accuracy=0.952798062806586, surprise=0.0472019371934138</p></div>
+<h2>Heatmaps</h2>
+<object data="figures/lift_heatmap.svg" type="image/svg+xml" width="900"></object>
+<object data="figures/accuracy_heatmap.svg" type="image/svg+xml" width="900"></object>
+<object data="figures/surprise_heatmap.svg" type="image/svg+xml" width="900"></object>
+<h2>Tabellen</h2><ul>
+<li><a href="tables/self_couplings.csv">Self-Kopplungen</a></li>
+<li><a href="tables/cross_couplings.csv">Cross-Kopplungen</a></li>
+<li><a href="tables/grammar_carriers.csv">Grammatik-Träger</a></li>
+<li><a href="tables/chromosome_receivers.csv">Empfängerprofile</a></li>
+<li><a href="tables/asymmetry.csv">Asymmetrien</a></li>
+</ul></body></html>

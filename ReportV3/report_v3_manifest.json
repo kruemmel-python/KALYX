@@ -1,0 +1,49 @@
+﻿{
+    "generated_at":  "2026-05-31T21:22:59.1646079+02:00",
+    "input":  {
+                  "dir":  ".\\GenomeOutFull",
+                  "matrix_csv":  ".\\GenomeOutFull\\human_chr1_22_XY_full_k16.csv",
+                  "null_csv":  ".\\GenomeOutFull\\ReportV3\\null_models.csv"
+              },
+    "null":  {
+                 "sample_per_cell":  200000,
+                 "train":  0.7,
+                 "seed":  "0x4b444e414e554c4c",
+                 "block_size":  4096,
+                 "rotation_offset":  4096,
+                 "modes":  [
+                               "symbol_shuffle",
+                               "rotation",
+                               "block_boundary"
+                           ]
+             },
+    "summary":  [
+                    {
+                        "mode":  "symbol_shuffle",
+                        "cells":  576,
+                        "avg_observed_accuracy":  0.992587279209,
+                        "avg_null_accuracy":  0.000230373264,
+                        "avg_delta_accuracy":  0.992356905945,
+                        "max_null_accuracy":  0.00035,
+                        "min_delta_accuracy":  0.952543062807
+                    },
+                    {
+                        "mode":  "rotation",
+                        "cells":  576,
+                        "avg_observed_accuracy":  0.992587279209,
+                        "avg_null_accuracy":  0.000263541667,
+                        "avg_delta_accuracy":  0.992323737542,
+                        "max_null_accuracy":  0.00058,
+                        "min_delta_accuracy":  0.952483062807
+                    },
+                    {
+                        "mode":  "block_boundary",
+                        "cells":  576,
+                        "avg_observed_accuracy":  0.992587279209,
+                        "avg_null_accuracy":  0.000381710069,
+                        "avg_delta_accuracy":  0.992205569139,
+                        "max_null_accuracy":  0.000855,
+                        "min_delta_accuracy":  0.952218062807
+                    }
+                ]
+}

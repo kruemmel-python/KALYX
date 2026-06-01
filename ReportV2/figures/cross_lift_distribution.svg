@@ -1,0 +1,41 @@
+﻿<svg xmlns='http://www.w3.org/2000/svg' width='920' height='360' viewBox='0 0 920 360'>
+<rect width='100%' height='100%' fill='white'/>
+<text x='20' y='28' font-size='18' font-family='Segoe UI, Arial'>Cross-Lift-Verteilung</text>
+<line x1='60' y1='312' x2='880' y2='312' stroke='#333'/>
+<line x1='60' y1='62' x2='60' y2='312' stroke='#333'/>
+<rect x='60' y='310.46' width='24.63' height='1.54' fill='#2b579a'><title>1</title></rect>
+<rect x='85.63' y='312' width='24.63' height='0' fill='#2b579a'><title>0</title></rect>
+<rect x='111.25' y='312' width='24.63' height='0' fill='#2b579a'><title>0</title></rect>
+<rect x='136.88' y='312' width='24.63' height='0' fill='#2b579a'><title>0</title></rect>
+<rect x='162.5' y='307.37' width='24.63' height='4.63' fill='#2b579a'><title>3</title></rect>
+<rect x='188.13' y='310.46' width='24.63' height='1.54' fill='#2b579a'><title>1</title></rect>
+<rect x='213.75' y='310.46' width='24.63' height='1.54' fill='#2b579a'><title>1</title></rect>
+<rect x='239.38' y='312' width='24.63' height='0' fill='#2b579a'><title>0</title></rect>
+<rect x='265' y='310.46' width='24.63' height='1.54' fill='#2b579a'><title>1</title></rect>
+<rect x='290.63' y='308.91' width='24.63' height='3.09' fill='#2b579a'><title>2</title></rect>
+<rect x='316.25' y='307.37' width='24.63' height='4.63' fill='#2b579a'><title>3</title></rect>
+<rect x='341.88' y='312' width='24.63' height='0' fill='#2b579a'><title>0</title></rect>
+<rect x='367.5' y='302.74' width='24.63' height='9.26' fill='#2b579a'><title>6</title></rect>
+<rect x='393.13' y='305.83' width='24.63' height='6.17' fill='#2b579a'><title>4</title></rect>
+<rect x='418.75' y='307.37' width='24.63' height='4.63' fill='#2b579a'><title>3</title></rect>
+<rect x='444.38' y='308.91' width='24.63' height='3.09' fill='#2b579a'><title>2</title></rect>
+<rect x='470' y='308.91' width='24.63' height='3.09' fill='#2b579a'><title>2</title></rect>
+<rect x='495.63' y='308.91' width='24.63' height='3.09' fill='#2b579a'><title>2</title></rect>
+<rect x='521.25' y='308.91' width='24.63' height='3.09' fill='#2b579a'><title>2</title></rect>
+<rect x='546.88' y='307.37' width='24.63' height='4.63' fill='#2b579a'><title>3</title></rect>
+<rect x='572.5' y='295.02' width='24.63' height='16.98' fill='#2b579a'><title>11</title></rect>
+<rect x='598.13' y='298.11' width='24.63' height='13.89' fill='#2b579a'><title>9</title></rect>
+<rect x='623.75' y='296.57' width='24.63' height='15.43' fill='#2b579a'><title>10</title></rect>
+<rect x='649.38' y='304.28' width='24.63' height='7.72' fill='#2b579a'><title>5</title></rect>
+<rect x='675' y='301.2' width='24.63' height='10.8' fill='#2b579a'><title>7</title></rect>
+<rect x='700.63' y='279.59' width='24.63' height='32.41' fill='#2b579a'><title>21</title></rect>
+<rect x='726.25' y='270.33' width='24.63' height='41.67' fill='#2b579a'><title>27</title></rect>
+<rect x='751.88' y='262.62' width='24.63' height='49.38' fill='#2b579a'><title>32</title></rect>
+<rect x='777.5' y='222.49' width='24.63' height='89.51' fill='#2b579a'><title>58</title></rect>
+<rect x='803.13' y='170.02' width='24.63' height='141.98' fill='#2b579a'><title>92</title></rect>
+<rect x='828.75' y='185.46' width='24.63' height='126.54' fill='#2b579a'><title>82</title></rect>
+<rect x='854.38' y='62' width='24.63' height='250' fill='#2b579a'><title>162</title></rect>
+<text x='60' y='348' font-size='12' font-family='Segoe UI, Arial'>0.951161</text>
+<text x='790' y='348' font-size='12' font-family='Segoe UI, Arial'>0.997719</text>
+</svg>
+
